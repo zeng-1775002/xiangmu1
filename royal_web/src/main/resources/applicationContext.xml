@@ -13,7 +13,7 @@
 	http://www.springframework.org/schema/tx
 	http://www.springframework.org/schema/tx/spring-tx.xsd">
 
-<!--555-->
+<!--666-->
     <!--配置datasource-->
     <context:property-placeholder location="classpath:db.properties"></context:property-placeholder>
     <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
