@@ -12,7 +12,7 @@
 	http://www.springframework.org/schema/aop/spring-aop.xsd
 	http://www.springframework.org/schema/tx
 	http://www.springframework.org/schema/tx/spring-tx.xsd">
-
+<!--skr-->
 
     <!--配置datasource-->
     <context:property-placeholder location="classpath:db.properties"></context:property-placeholder>
