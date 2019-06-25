@@ -14,6 +14,8 @@ public class User {
     //1代表普通用户；2代表高级用户，3代表超级管理员
     private int role;
 
+    private String roleStr;
+
     private Date lastLoginTime;
 
     //登录状态，0代表未登录，1代表已登录
@@ -27,6 +29,7 @@ public class User {
 
     //申请升级审核状态(0-未处理,1-已处理)
     private int updateStatus;
+
 
     public int getUserId() {
         return userId;
@@ -74,6 +77,23 @@ public class User {
 
     public void setRole(int role) {
         this.role = role;
+    }
+    //1代表普通用户；2代表高级用户，3代表超级管理员
+    public String getRoleStr() {
+        if (role == 1){
+            roleStr ="普通用户";
+        }
+        if (role == 2){
+            roleStr ="高级用户";
+        }
+        if (role == 3){
+            roleStr ="超级管理员";
+        }
+        return roleStr;
+    }
+
+    public void setRoleStr(String roleStr) {
+        this.roleStr = roleStr;
     }
 
     public Date getLastLoginTime() {
