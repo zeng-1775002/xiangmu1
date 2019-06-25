@@ -15,7 +15,7 @@
 <body>
 
 <!-- 头部 -->
-<jsp:include page="jsp/common/header.jsp"/>
+<jsp:include page="common/header.jsp"/>
 
 
 <!-- 主体部分 -->
@@ -188,7 +188,7 @@
 
 
 <!-- 底部 -->
-<jsp:include page="jsp/common/footer.jsp"/>
+<jsp:include page="common/footer.jsp"/>
 
 
 
