@@ -5,6 +5,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>用户登录</title>
+
+
 </head>
 
 <body>
@@ -13,8 +15,9 @@
         <div class="hm-inner-l l"></div>
         <div class="hm-inner-r r">
             <div class="box">
+
                 <a href="javascript:;" id="login" class="to-login">游客登录</a>
-                <a href="register.do">【新用户注册】</a>
+                <a href="register.do" id="register">【新用户注册】</a>
                 <div id="dialogBg"></div>
                 <div id="dialog" class="animated">
                     <img class="dialogIco" width="50" height="40" src="images/ico.png"/>
@@ -34,10 +37,19 @@
     </div>
 </div>
 </body>
+<script>
+    if (${user.loginStatus == 1}){
+        $('#login ').html('<span>欢迎您，${user.roleStr}:${user.userName}  <a> &nbsp&nbsp&nbsp个人中心&nbsp&nbsp</a><span>');
+        $('#register').html('<a>注销</a>')
+    }
+</script>
+
 <script type="text/javascript">
+    <%--登录成功显示用户名--%>
 
     $(function () {
 
+5
 
       //显示弹框
       $('.box #login').click(function () {

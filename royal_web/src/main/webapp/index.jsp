@@ -26,8 +26,6 @@
         <div class="hm-banner"></div>
 
 
-
-
         <!--头部，帖子统计，搜索-->
         <div class="hm-bbs-info">
             <div class="hm-bbs-icon l" style="width:130px;">
