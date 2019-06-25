@@ -8,6 +8,8 @@
             location.href="article/getArticleList.do";
         })
     </script>
+
+    <jsp:forward page="article/getArticleList.do"/>
 </head>
 <body>
 </body>
