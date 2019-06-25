@@ -14,12 +14,13 @@ import java.util.List;
 public class ArticleController {
     @Autowired
     private ArticleService articleService;
+
     @RequestMapping("/getArticleList.do")
     public ModelAndView findAll(){
         ModelAndView mv = new ModelAndView();
         List<Article> list = articleService.findAll();
         mv.addObject("list",list);
-        mv.setViewName("jsp");
+        mv.setViewName("aaa");
         return mv;
     }
 }

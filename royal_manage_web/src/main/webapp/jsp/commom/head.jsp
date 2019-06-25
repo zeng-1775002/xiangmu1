@@ -35,7 +35,7 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">账号管理 <span class="caret"></span></a>
                         <ul class="dropdown-menu nav nav-pills nav-stacked">
                             <li><a href="#"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>欢迎您,超級管理員</a></li>
-                            <li><a href="/logout" class="hrms_logout"><span class="glyphicon glyphicon-off" aria-hidden="true"></span> 账号退出</a></li>
+                            <li><a href="${pageContext.request.contextPath}/logout.jsp" class="hrms_logout"  id="logout"><span class="glyphicon glyphicon-off" aria-hidden="true"></span> 账号退出</a></li>
                         </ul>
                     </li>
                 </ul><!-- /.nav navbar-nav navbar-right -->
@@ -47,6 +47,10 @@
     //主页面
     $("#company_logo").click(function () {
         $(this).attr("href", "http://xm.itcast.cn");
+    });
+
+    $("#logout").click(function () {
+        alert("已成功退出!")
     });
 
 </script>
