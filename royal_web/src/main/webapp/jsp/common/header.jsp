@@ -34,9 +34,7 @@
 </div>
 </body>
 <script type="text/javascript">
-    <%--if (${sessionScope.loginStatus} = 1){--%>
-        <%--$('.box #login').text('欢迎您'+${sessionScope.userName})--%>
-    <%--}--%>
+
     $(function () {
 
 
