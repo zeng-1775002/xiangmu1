@@ -13,6 +13,7 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserDao userDao;
+
     @Override
     public User findByNameAndPass(String userName,String userPass) {
         return userDao.findByNameAndPass(userName,userPass);

@@ -22,11 +22,11 @@ public class LoginController {
         if (user != null){
             userService.updateLoginStatus(userName,1);
             mv.addObject("user",user);
-            mv.setViewName("index");
+            mv.setViewName("loginSuccess");
 
         }else{
 
-            mv.setViewName("A");
+            mv.setViewName("loginFailed");
         }
         return mv;
 

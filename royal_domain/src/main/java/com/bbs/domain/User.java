@@ -8,6 +8,7 @@ public class User {
     private String userPass;
     private String email;
 
+
     //头像
     private String picUrl;
 
