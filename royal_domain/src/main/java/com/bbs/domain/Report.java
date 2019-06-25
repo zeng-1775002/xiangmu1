@@ -3,12 +3,12 @@ package com.bbs.domain;
 import java.util.Date;
 
 public class Report {
-    private Integer reportId;
+    private int reportId;
     private String reportContent;
     private Date reportTime;
     private String reportUserName;
-    private Integer reportStatus;
-    private Integer articleId;
+    private int reportStatus;
+    private int articleId;
 
     @Override
     public String toString() {
@@ -22,11 +22,11 @@ public class Report {
                 '}';
     }
 
-    public Integer getReportId() {
+    public int getReportId() {
         return reportId;
     }
 
-    public void setReportId(Integer reportId) {
+    public void setReportId(int reportId) {
         this.reportId = reportId;
     }
 
@@ -54,19 +54,19 @@ public class Report {
         this.reportUserName = reportUserName;
     }
 
-    public Integer getReportStatus() {
+    public int getReportStatus() {
         return reportStatus;
     }
 
-    public void setReportStatus(Integer reportStatus) {
+    public void setReportStatus(int reportStatus) {
         this.reportStatus = reportStatus;
     }
 
-    public Integer getArticleId() {
+    public int getArticleId() {
         return articleId;
     }
 
-    public void setArticleId(Integer articleId) {
+    public void setArticleId(int articleId) {
         this.articleId = articleId;
     }
 }
