@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class ManagerServiceImpl implements ManageService {
 
+
     @Autowired
     private ManageDao manageDao;
 

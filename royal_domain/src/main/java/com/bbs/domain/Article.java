@@ -2,6 +2,7 @@ package com.bbs.domain;
 
 import java.util.Date;
 
+
 public class Article {
     private Integer articleId;
     private String title;

@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
+
 <html>
 <head>
     <title>登录页面</title>
@@ -19,6 +20,7 @@
                 <div class="panel-heading">
                     <h3 class="panel-title" style="text-align: center;">王者荣耀论坛管理后台</h3>
                 </div>
+
                 <div class="panel-body">
                     <div id="errorMsg" class="alert alert-danger" >${str}</div>
                     <form action="${pageContext.request.contextPath}/manage/findByManager.do" method="post" id="login_form">

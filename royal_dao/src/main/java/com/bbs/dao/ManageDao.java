@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Select;
 
 public interface ManageDao {
 
+
     /**
      * 根据用户名和密码进行查询管理员
      * @param username

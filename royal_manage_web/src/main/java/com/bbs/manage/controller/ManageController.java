@@ -17,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("/manage")
 public class ManageController {
 
+
     @Autowired
     private ManageService manageService;
 
@@ -30,7 +31,6 @@ public class ManageController {
          *          正确: 跳转成功页面
          *          错误: 向域中存入错误信息
          *      不是: 向域中存入错误信息
-
          */
         String s = "请以管理员身份登录!";
         if (user.getRole()==3){
