@@ -105,11 +105,11 @@
                     </h3>
                     <ul class="b clearfix">
                         <li>
-                            <div><img src="images/default.png" height="55"/> </div>
+                            <div><img src="../images/bg.jpg" height="55"/> </div>
                             <p>Mr.King</p>
                         </li>
                         <li>
-                            <div><img src="images/default.png" height="55"/></div>
+                            <div><img src="../images/bg.jpg" height="55"/></div>
                             <p>疯子</p>
                         </li>
                     </ul>

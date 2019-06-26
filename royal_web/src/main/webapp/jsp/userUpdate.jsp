@@ -15,36 +15,21 @@
         .hm-header-b { border-bottom: 1px solid #d9d9d9; }
     </style>
     <script>
-        $(function () {
-           /* $("#btn").click(function () {
-                    $("#form").submit();
-
-            })*/
-
-
-            $("#oldPassword").blur(function () {
-                var oldPassword= $("#oldPassword").val();
-                var userName=$("#username").text();
-               /* alert(oldPassword);
-                alert(userName);*/
-
-                $.post("${pageContext.request.contextPath}/user/findOldUserPass.do",{oldPassword:oldPassword,userName:userName},function (data) {
-                      if(data=="true"){
-                          alert(data);
-                          $("#btn").removeAttr("disabled");
-                      }else{
-                          alert(data);
-                        $("#btn").attr("disabled",true);
-
-                }
-                })
-            })
-
-        })
+      function load() {
+          var userName=$("#username").text();
+          $.post("${pageContext.request.contextPath}/article/selectArticle.do",{userName:userName},function (data) {
+            $("#count").text(data);
+            if(data<5){
+               $("#btn").attr("disabled",true);
+            }else{
+                $("#btn").removeAttr("disabled");
+            }
+          })
+      }
 
     </script>
-</head>
-<body>
+    </head>
+    <body onload="load()">
 
 
 <!-- 头部 -->
@@ -57,7 +42,7 @@
     <div class="hm-inner clearfix">
         <div class="hm-header-t clearfix">
             <h1 class="logo l">
-                <a href="javascript:;"><img src="images/logo.png" alt=""/></a>
+                <a href="javascript:;"><img src="../images/logo.png" alt=""/></a>
             </h1>
             <div class="search-box l">
                 <form action="javascript:;">
@@ -86,7 +71,7 @@
                 </div>
                 <ul class="user-info-l-b">
                     <li><i class="info-icon"></i>我的资料</li>
-                    <li class="cur"><i class="safe-icon"></i>修改密码</li>
+                    <li ><i class="safe-icon"></i>修改密码</li>
                 </ul>
             </div>
 
@@ -94,30 +79,34 @@
             <div class="user-info-r r">
                 <ul class="clearfix hd">
                     <li><a href="${pageContext.request.contextPath}/jsp/userInfo.jsp">个人信息</a></li>
-                    <li class="cur"><a href="${pageContext.request.contextPath}/jsp/userPwd.jsp">修改密码</a></li>
+                    <li ><a href="${pageContext.request.contextPath}/jsp/userPwd.jsp">修改密码</a></li>
                     <c:if test="${user.role==1}">
-                        <li ><a href="${pageContext.request.contextPath}/jsp/userUpdate.jsp">申请高级用户</a></li>
+                        <li class="cur"><a href="getUser.do?method=userPwd">申请高级用户</a></li>
                     </c:if>
                     <c:if test="${user.role==2}">
-                        <li ><a href="${pageContext.request.contextPath}/jsp/userOpen.jsp">开辟新版块</a></li>
+                        <li class="cur"><a href="getUser.do?method=userPwd">开辟新版块</a></li>
                     </c:if>
                 </ul>
-                <form id="form" action="${pageContext.request.contextPath}/user/updateUserPass.do" method="post">
+                <form action="${pageContext.request.contextPath}/user/updateUserRole.do" method="post">
                     <input type="hidden" name="userName" value="${user.userName}">
                   <ul class="bd">
                     <li class="clearfix">
-                        <div class="info-l"><i class="red">*</i>旧密码：</div>
-                        <div class="info-r"><input id="oldPassword" type="password" name="oldPassword" class="txt"/></div>
+                        <div style="font-size:20px"><i class="red">高级特权：</i>开辟新版块</div>
                     </li>
+                      <br>
                     <li class="clearfix">
-                        <div class="info-l"><i class="red">*</i>新密码：</div>
-                        <div class="info-r"><input type="password" name="newPassword" class="txt"/></div>
+                        <div style="font-size:20px"><i class="red">申请条件：</i>发帖数 ≥5 </div>
                     </li>
+                      <br>
+                      <li class="clearfix">
+                          <div style="font-size:20px"><i class="red">当前发帖数：</i><span id="count"></span></div>
+                      </li>
+                      <br>
                     <li class="clearfix">
                         <div class="info-l"></div>
-                        <div class="info-r" id="btnDiv">
-						  <input id="btn" type="submit" class="btn" value="保存" />
-						  <span style="color:red;"></span>
+                        <div class="info-r">
+						  <input id="btn" type="submit" class="btn" value="申请"/>
+						  <span style="color:red;">${str}</span>
 						</div>
                     </li>
                   </ul>

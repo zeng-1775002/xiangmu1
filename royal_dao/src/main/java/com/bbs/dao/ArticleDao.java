@@ -15,4 +15,12 @@ public interface ArticleDao {
     @Insert("insert into bbs_article_table(title,content,sendTime,senderName,isTop,replyCount,upvoteCount,browseCount,zoneId,isReport)" +
             "values(#{title},#{content},#{sendTime},#{senderName},#{isTop},#{replyCount},#{upvoteCount},#{browseCount},#{zoneId},#{isReport})")
     void save(Article article);
+
+    /**
+     * 查找个人发帖数
+     * @param userName
+     * @return
+     */
+    @Select("select count(*) from bbs_article_table where senderName=#{userName}")
+    int findArticleByName(String userName);
 }

@@ -7,6 +7,5 @@
 
 <jsp:forward page="index.jsp"/>
 
-
 </body>
 </html>

@@ -5,12 +5,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
-<<<<<<< HEAD
 
-<<<<<<< HEAD
-
->>>>>>> origin/dev
->>>>>>> origin/dev
 <body>
 <div class="hm-footer" style="padding-top:10px;">
     <div class="hm-inner">
