@@ -9,4 +9,6 @@ public interface ArticleService {
     public List<Article> findAll();
 
     void save(Article article);
+
+    int findArticleByName(String userName);
 }

@@ -136,4 +136,21 @@ public class User {
     public void setUpdateStatus(int updateStatus) {
         this.updateStatus = updateStatus;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "userId=" + userId +
+                ", userName='" + userName + '\'' +
+                ", userPass='" + userPass + '\'' +
+                ", email='" + email + '\'' +
+                ", picUrl='" + picUrl + '\'' +
+                ", role=" + role +
+                ", lastLoginTime=" + lastLoginTime +
+                ", loginStatus=" + loginStatus +
+                ", talkStatus=" + talkStatus +
+                ", isupdating=" + isupdating +
+                ", updateStatus=" + updateStatus +
+                '}';
+    }
 }
