@@ -21,6 +21,8 @@
             $("#count").text(data);
             if(data<5){
                $("#btn").attr("disabled",true);
+            }else{
+                $("#btn").removeAttr("disabled");
             }
           })
       }

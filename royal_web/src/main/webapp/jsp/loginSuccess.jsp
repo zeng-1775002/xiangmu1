@@ -6,7 +6,7 @@
 <body>
 <H3 align="center">登录成功！</H3>
 <%--<a href="${pageContext.request.contextPath}/index.jsp">返回到登录页面</a>--%>
-<jsp:forward page="index.jsp"></jsp:forward>
+<jsp:forward page="${pageContext.request.contextPath}/index.jsp"></jsp:forward>
 
 
 </body>

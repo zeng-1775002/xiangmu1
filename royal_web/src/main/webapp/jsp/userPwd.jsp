@@ -16,10 +16,10 @@
     </style>
     <script>
         $(function () {
-            $("#btn").click(function () {
+           /* $("#btn").click(function () {
                     $("#form").submit();
 
-            })
+            })*/
 
 
             $("#oldPassword").blur(function () {
@@ -29,12 +29,13 @@
                 alert(userName);*/
 
                 $.post("${pageContext.request.contextPath}/user/findOldUserPass.do",{oldPassword:oldPassword,userName:userName},function (data) {
-                      if(data){
+                      if(data=="true"){
                           alert(data);
+                          $("#btn").removeAttr("disabled");
                       }else{
                           alert(data);
-                        //  $("#btn").hide();
-                          $("#btnDiv").css("display","none");
+                        $("#btn").attr("disabled",true);
+
                 }
                 })
             })
@@ -115,7 +116,7 @@
                     <li class="clearfix">
                         <div class="info-l"></div>
                         <div class="info-r" id="btnDiv">
-						  <input id="btn" type="button" class="btn" value="保存" />
+						  <input id="btn" type="submit" class="btn" value="保存" />
 						  <span style="color:red;"></span>
 						</div>
                     </li>

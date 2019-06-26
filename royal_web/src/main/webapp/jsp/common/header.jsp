@@ -39,7 +39,7 @@
 <script>
     <%--登录成功显示用户名--%>
     if (${user.loginStatus == 1}){
-        $('#login ').html('<span>欢迎您，${user.roleStr}:${user.userName}  <a> &nbsp&nbsp&nbsp个人中心&nbsp&nbsp</a><span>');
+        $('#login ').html('<span>欢迎您，${user.roleStr}:${user.userName}  <a href="${pageContext.request.contextPath}/user/findRole.do?userName=${user.userName}"> &nbsp&nbsp&nbsp个人中心&nbsp&nbsp</a><span>');
         $('#register').html('<a>注销</a>')
     }
 </script>

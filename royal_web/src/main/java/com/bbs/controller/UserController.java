@@ -23,9 +23,8 @@ public class UserController {
     @Autowired
     private UserService userService;
     @RequestMapping("/findRole.do")
-    public String findRole(Model model){
-        String name="zhangsan";
-        User user = userService.findRole(name);
+    public String findRole(@RequestParam(name = "userName",required = true) String userName,Model model){
+        User user = userService.findRole(userName);
         System.out.println(user);
         ModelAndView mv = new ModelAndView();
         model.addAttribute("user",user);
