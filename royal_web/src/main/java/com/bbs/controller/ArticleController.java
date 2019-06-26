@@ -1,6 +1,7 @@
 package com.bbs.controller;
 
-import com.bbs.service.IArticleService;
+import com.bbs.domain.Article;
+import com.bbs.service.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,7 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("article")
 public class ArticleController {
     @Autowired
-    private IArticleService articleService;
+    private ArticleService articleService;
 
     @RequestMapping("getArticleList.do")
         public ModelAndView getArticleList()throws Exception{

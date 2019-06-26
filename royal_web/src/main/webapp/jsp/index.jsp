@@ -169,19 +169,41 @@
                     </h3>
                     <ul class="b clearfix">
                         <li>
+<<<<<<< HEAD
+
+<<<<<<< HEAD
+>>>>>>> origin/dev
                             <div><img src="images/default.png" height="55"/> </div>
                             <p>Mr.King</p>
                         </li>
                         <li>
                             <div><img src="images/default.png" height="55"/></div>
+<<<<<<< HEAD
+
+
+                            <div><img src="../images/default.png" height="55"/> </div>
+                            <p>Mr.King</p>
+                        </li>
+                        <li>
+                            <div><img src="../images/default.png" height="55"/></div>
+>>>>>>> origin/dev
+>>>>>>> origin/dev
                             <p>疯子</p>
                         </li>
                     </ul>
                 </div>
             </div>
 
+<<<<<<< HEAD
 
 
+
+<<<<<<< HEAD
+
+
+
+>>>>>>> origin/dev
+>>>>>>> origin/dev
         </div>
     </div>
 </div>

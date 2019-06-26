@@ -22,7 +22,7 @@
     <!-- 配置视图解析器 -->
     <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <!-- JSP文件所在的目录 -->
-        <property name="prefix" value="/WEB-INF/jsp/" />
+        <property name="prefix" value="/jsp/" />
         <!-- 文件的后缀名 -->
         <property name="suffix" value=".jsp" />
     </bean>

@@ -2,42 +2,25 @@ package com.bbs.domain;
 
 import java.util.Date;
 
-//帖子表
+
 public class Article {
-    private int articleId;
+    private Integer articleId;
     private String title;
     private String content;
     private Date sendTime;
     private String senderName;
-    private int isTop;
-    private int replyCount;
-    private int upvoteCount;
-    private int browseCount;
-    private int zoneId;
-    private int isReport;
+    private Integer isTop;
+    private Integer replyCount;
+    private Integer upvoteCount;
+    private Integer browseCount;
+    private Integer zoneId;
+    private Integer isReport;
 
-    @Override
-    public String toString() {
-        return "Article{" +
-                "articleId=" + articleId +
-                ", title='" + title + '\'' +
-                ", content='" + content + '\'' +
-                ", sendTime=" + sendTime +
-                ", senderName='" + senderName + '\'' +
-                ", isTop=" + isTop +
-                ", replyCount=" + replyCount +
-                ", upvoteCount=" + upvoteCount +
-                ", browseCount=" + browseCount +
-                ", zoneId=" + zoneId +
-                ", isReport=" + isReport +
-                '}';
-    }
-
-    public int getArticleId() {
+    public Integer getArticleId() {
         return articleId;
     }
 
-    public void setArticleId(int articleId) {
+    public void setArticleId(Integer articleId) {
         this.articleId = articleId;
     }
 
@@ -73,51 +56,68 @@ public class Article {
         this.senderName = senderName;
     }
 
-    public int getIsTop() {
+    public Integer getIsTop() {
         return isTop;
     }
 
-    public void setIsTop(int isTop) {
+    public void setIsTop(Integer isTop) {
         this.isTop = isTop;
     }
 
-    public int getReplyCount() {
+    public Integer getReplyCount() {
         return replyCount;
     }
 
-    public void setReplyCount(int replyCount) {
+    public void setReplyCount(Integer replyCount) {
         this.replyCount = replyCount;
     }
 
-    public int getUpvoteCount() {
+    public Integer getUpvoteCount() {
         return upvoteCount;
     }
 
-    public void setUpvoteCount(int upvoteCount) {
+    public void setUpvoteCount(Integer upvoteCount) {
         this.upvoteCount = upvoteCount;
     }
 
-    public int getBrowseCount() {
+    public Integer getBrowseCount() {
         return browseCount;
     }
 
-    public void setBrowseCount(int browseCount) {
+    public void setBrowseCount(Integer browseCount) {
         this.browseCount = browseCount;
     }
 
-    public int getZoneId() {
+    public Integer getZoneId() {
         return zoneId;
     }
 
-    public void setZoneId(int zoneId) {
+    public void setZoneId(Integer zoneId) {
         this.zoneId = zoneId;
     }
 
-    public int getIsReport() {
+    public Integer getIsReport() {
         return isReport;
     }
 
-    public void setIsReport(int isReport) {
+    public void setIsReport(Integer isReport) {
         this.isReport = isReport;
+    }
+
+    @Override
+    public String toString() {
+        return "Article{" +
+                "articleId=" + articleId +
+                ", title='" + title + '\'' +
+                ", content='" + content + '\'' +
+                ", sendTime=" + sendTime +
+                ", senderName='" + senderName + '\'' +
+                ", isTop=" + isTop +
+                ", replyCount=" + replyCount +
+                ", upvoteCount=" + upvoteCount +
+                ", browseCount=" + browseCount +
+                ", zoneId=" + zoneId +
+                ", isReport=" + isReport +
+                '}';
     }
 }
