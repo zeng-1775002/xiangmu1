@@ -7,9 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.servlet.ServletResponse;
+import javax.servlet.http.HttpServletResponse;
+import java.util.List;
+
 @Service
 @Transactional
-public class ArticleServiceImpl implements IArticleService {
+public class ArticleServiceImpl implements ArticleService {
 
     @Autowired
     private ArticleDao articleDao;
@@ -24,5 +28,10 @@ public class ArticleServiceImpl implements IArticleService {
     @Override
     public Integer findByTimePost() throws Exception {
         return  articleDao.findByTimePost();
+    }
+
+    @Override
+    public void save(Article article) {
+       articleDao.save(article);
     }
 }
