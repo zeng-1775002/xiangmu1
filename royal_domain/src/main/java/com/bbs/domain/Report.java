@@ -1,7 +1,7 @@
 package com.bbs.domain;
 
 import java.util.Date;
-
+//举报表
 public class Report {
     private int reportId;
     private String reportContent;
