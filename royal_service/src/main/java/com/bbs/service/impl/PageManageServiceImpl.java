@@ -22,6 +22,29 @@ public class PageManageServiceImpl implements PageManageService{
     private PageManageDao pageManageDao;
 
     @Override
+    public List<Article> findByLike(int page, int size,String title,String sendername) {
+
+        /**
+         * 如果标题和发帖人都为空,就执行查询全部
+         * 如果不为空,就执行模糊查询
+         */
+        if (title=="" && sendername ==""){
+            //利用pageHelper进行分页查询
+            PageHelper.startPage(page,size);
+            return pageManageDao.findAllArticle(page,size,title,sendername);
+        }
+        //利用pageHelper进行分页查询
+        PageHelper.startPage(page,size);
+        List<Article> articleList = pageManageDao.findByLike(page, size, title, sendername);
+        return articleList;
+    }
+
+    @Override
+    public void deleteById(Integer articleId) {
+        pageManageDao.deleteById(articleId);
+    }
+
+    @Override
     public List<Article> findAll(int page, int size) {
         //利用pageHelper进行分页查询
         PageHelper.startPage(page,size);

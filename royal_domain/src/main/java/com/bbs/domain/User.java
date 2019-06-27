@@ -8,7 +8,6 @@ public class User {
     private String userPass;
     private String email;
 
-
     //头像
     private String picUrl;
 
@@ -24,6 +23,22 @@ public class User {
 
     //发言状态，0代表未屏蔽发言（默认），1代表已屏蔽发言
     private int talkStatus;
+
+    private String talkStatusStr;
+
+    public void setTalkStatusStr(String talkStatusStr) {
+        this.talkStatusStr = talkStatusStr;
+    }
+
+    //0代表未屏蔽发言（默认），1代表已屏蔽发言
+    public String getTalkStatusStr() {
+        if (talkStatus==0){
+            talkStatusStr="未禁言";
+        }if (talkStatus==1){
+            talkStatusStr="已禁言";
+        }
+        return talkStatusStr;
+    }
 
     //申请升级(0-未申请,1-已申请)
     private int isupdating;

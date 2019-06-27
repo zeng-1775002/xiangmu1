@@ -16,14 +16,19 @@ import java.util.List;
 public class ArticleController {
     @Autowired
     private ArticleService articleService;
+    @Autowired
+    private ZoneService zoneService;
 
-    @RequestMapping("getArticleList.do")
-        public ModelAndView getArticleList()throws Exception{
-            ModelAndView mv = new ModelAndView();
-        List<Article> articleList = articleService.findAll();
-        mv.addObject("articleList",articleList);
-            mv.setViewName("index");
-            return mv;
+    @RequestMapping("/getArticle.do")
+    public ModelAndView findAll(){
+        ModelAndView mv = new ModelAndView();
+        List<Article> list = articleService.findAll();
+        List<ZoneTable> zoneList = zoneService.findNewZone();
+        mv.addObject("zoneList",zoneList);
+        mv.addObject("articleList",list);
+
+        mv.setViewName("index");
+        return mv;
     }
     //首页统计今日贴子数
     @RequestMapping("findByTimePost.do")
@@ -64,5 +69,6 @@ public class ArticleController {
         System.out.println(count);
         return count+"";
     }
+
 
 }

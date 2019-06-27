@@ -11,4 +11,9 @@ public interface PageManageService {
     void updateIsTop(String articleId);
     //取消
     void updateIsTops(String articleId);
+    public List<Article> findByLike(int page, int size,String title,String sendername);
+
+    void deleteById(Integer articleId);
+
+
 }

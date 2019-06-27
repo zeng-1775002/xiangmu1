@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Select;
 import java.util.List;
 
 public interface ArticleDao {
+
     //首页统计全部帖子数
     @Select("select count(*) from bbs_article_table")
     Integer findAllPost()throws Exception;
