@@ -3,12 +3,12 @@ package com.bbs.domain;
 import java.util.Date;
 //举报表
 public class Report {
-    private int reportId;
-    private String reportContent;
-    private Date reportTime;
-    private String reportUserName;
-    private int reportStatus;
-    private int articleId;
+    private int reportId;//id
+    private String reportContent;//举报内容
+    private Date reportTime;//举报时间
+    private String reportUserName;//举报人
+    private int reportStatus;//处理状态
+    private int articleId;//文章ID
 
     @Override
     public String toString() {

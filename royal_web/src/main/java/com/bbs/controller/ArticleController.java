@@ -20,16 +20,23 @@ public class ArticleController {
     @RequestMapping("getArticleList.do")
         public ModelAndView getArticleList()throws Exception{
             ModelAndView mv = new ModelAndView();
-            Integer articleAll= articleService.findAllPost();//获取全部帖子数
-        Integer byTimePost = articleService.findByTimePost();//获取今日帖子数
-        mv.addObject("byTimePost",byTimePost);
-        mv.addObject("articleAll",articleAll);
+        List<Article> articleList = articleService.findAll();
+        mv.addObject("articleList",articleList);
             mv.setViewName("index");
-
-            System.out.println(articleAll);
-        System.out.println(byTimePost);
-
             return mv;
+    }
+    //首页统计今日贴子数
+    @RequestMapping("findByTimePost.do")
+    public @ResponseBody Integer findByTimePost() throws Exception {
+        Integer byTimePost = articleService.findByTimePost();
+        System.out.println(byTimePost);
+        return byTimePost;
+    }
+    //首页统计全部帖子数
+    @RequestMapping("findAllPost.do")
+    public @ResponseBody Integer findAllPost() throws Exception {
+        Integer serviceAllPost = articleService.findAllPost();
+        return serviceAllPost;
     }
 //    发帖功能
     @RequestMapping("/save.do")
@@ -57,6 +64,5 @@ public class ArticleController {
         System.out.println(count);
         return count+"";
     }
-
 
 }

@@ -114,11 +114,11 @@
                                 <a href="/article/deleteArticle.do?id=${article.articleId}&pn=${articleMsgs.pageNum}&title=${articleSearch.title}&sendername=${articleSearch.sendername}"
                                    role="button" class="btn btn-primary">屏蔽</a>
                                 <c:if test="${article.isTop==0}">
-                                    <a href="/article/changeStatus.do?id=${article.articleId}&pn=${articleMsgs.pageNum}&title=${articleSearch.title}&sendername=${articleSearch.sendername}"
+                                    <a href="/pageManage/changeStatus1.do?id=${article.articleId}"
                                        role="button" class="btn btn-danger">置顶</a>
                                 </c:if>
                                 <c:if test="${article.isTop==1}">
-                                    <a href="/article/changeStatus.do?id=${article.articleId}&pn=${articleMsgs.pageNum}&title=${articleSearch.title}&sendername=${articleSearch.sendername}"
+                                    <a href="/pageManage/changeStatus2.do?id=${article.articleId}"
                                        role="button" class="btn btn-info">取消</a>
                                 </c:if>
                             </td>

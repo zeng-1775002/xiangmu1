@@ -36,8 +36,8 @@
             <div class="hm-bbs-info-in l" style="margin-left:30px;">
                 <div class="t clearfix"><h2 class="l">王者荣耀</h2></div>
                 <p>
-                    <span>今日帖子<strong>${byTimePost}</strong></span>
-                    <span>/全部帖子<strong>${articleAll}<strong></span>
+                    <span>今日帖子<strong id="timepost"></strong></span>
+                    <span>/全部帖子<strong id="allpost"></strong></span>
                 </p>
             </div>
             <div class="search-box l">
@@ -93,10 +93,6 @@
                     </c:forEach>
                 </ul>
             </div>
-
-
-
-
             <!-- 右侧侧边栏,在线用户 -->
             <div class="aside l">
                 <div class="aside-box">
@@ -115,9 +111,6 @@
                     </ul>
                 </div>
             </div>
-
-<<<<<<< HEAD
-
 
         </div>
     </div>
@@ -159,7 +152,19 @@
         </div>
     </div>
 </form>
-
+<%--定义显示帖子数ajax--%>
+<script>
+    $(function () {
+        $.post("${pageContext.request.contextPath}/article/findByTimePost.do",{},function (data) {
+            $("#timepost").append(data)
+        })
+    });
+    $(function () {
+        $.post("${pageContext.request.contextPath}/article/findAllPost.do",{},function (data) {
+            $("#allpost").append(data)
+        })
+    })
+</script>
 
 </body>
 </html>

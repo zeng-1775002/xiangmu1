@@ -7,6 +7,15 @@ import org.apache.ibatis.annotations.Select;
 import java.util.List;
 
 public interface ArticleDao {
+    //首页统计全部帖子数
+    @Select("select count(*) from bbs_article_table")
+    Integer findAllPost()throws Exception;
+
+    //首页统计今日贴子数
+    @Select("SELECT COUNT(*) FROM bbs_article_table WHERE TO_DAYS(sendTime) = TO_DAYS(NOW());")
+    Integer findByTimePost()throws Exception;
+
+    //查询全部帖子的状态
     @Select("select * from bbs_article_table")
     public List<Article> findAll();
 
@@ -23,4 +32,5 @@ public interface ArticleDao {
      */
     @Select("select count(*) from bbs_article_table where senderName=#{userName}")
     int findArticleByName(String userName);
+
 }

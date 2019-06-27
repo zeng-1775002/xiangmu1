@@ -27,4 +27,14 @@ public class PageManageServiceImpl implements PageManageService{
         PageHelper.startPage(page,size);
         return pageManageDao.findAll(page,size);
     }
+    //置顶
+    @Override
+    public void updateIsTop(String articleId) {
+        pageManageDao.updateIsTop(articleId);
+    }
+    //取消
+    @Override
+    public void updateIsTops(String articleId) {
+        pageManageDao.updateIsTops(articleId);
+    }
 }
