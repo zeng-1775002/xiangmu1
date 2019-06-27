@@ -13,11 +13,18 @@
     function allow(){
         $("#apply").attr('action','${pageContext.request.contextPath}/zoneApply/applyAllow.do');
         $("#apply").submit();
+        alert("已允许申请通过！")
+        $(this).css("background-color","green")
+        // location.reload()
+
     }
 
     function reject(){
         $("#apply").attr('action','${pageContext.request.contextPath}/zoneApply/applyReject.do');
         $("#apply").submit();
+        alert("已驳回申请！")
+        $(this).css("background-color","red")
+        // location.reload()
     }
 </script>
 <div class="hrms_container">
@@ -54,10 +61,9 @@
                                     <td width="100px" >${list.userName}</td>
                                     <td >${list.reason}</td>
                                     <td width="120px">
-                                        <input type="button"  value="允许"  onclick="allow()">
-                                        <input type="button"  value="驳回"  onclick="reject()">
+                                        <input type="button"  style="" value="允许"  onclick="allow()">
+                                        <input type="button"  style="" value="驳回"  onclick="reject()">
                                     </td>
-
                                 </tr>
                                 </form>
                             </c:forEach>

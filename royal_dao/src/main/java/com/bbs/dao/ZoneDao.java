@@ -28,7 +28,7 @@ public interface ZoneDao {
 
     //新增版块
     @Insert("INSERT INTO bbs_zone_table (zoneName,isDef) VALUES(#{zoneName},#{isDef})")
-    void addNewZone(String zoneName, int isDef);
+    void addNewZone(@Param("zoneName") String zoneName, @Param("isDef")int isDef);
 
     //首页展示新版块
     @Select("select * from bbs_zone_table where zoneId > 4")

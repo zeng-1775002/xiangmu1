@@ -28,14 +28,6 @@ public class ZoneApplyController {
         return mv;
     }
 
-//    @RequestMapping("/applyStatus.do")
-//    public String applyStatus(@RequestParam(name = "zoneName",required = true)String zoneName,
-//                             @RequestParam(name = "userName",required = true)String userName){
-//
-//        applyAllow(zoneName,userName);
-//
-//        return "main";
-//    }
 
 
     @RequestMapping("/applyAllow.do")
@@ -45,7 +37,7 @@ public class ZoneApplyController {
             zoneService.updateStatus(zoneName,userName,1);
             zoneService.addNewZone(zoneName,2);
 
-            return "main";
+            return "redirect:findAllZoneApply.do";
     }
 
     @RequestMapping("/applyReject.do")
@@ -54,7 +46,7 @@ public class ZoneApplyController {
 
         zoneService.updateStatus(zoneName,userName,0);
 
-        return "zone";
+        return "redirect:findAllZoneApply.do";
     }
 
 

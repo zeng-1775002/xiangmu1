@@ -31,8 +31,7 @@
                     <form action="/login/findByNameAndPass.do" method="post">
                         <ul class="editInfos">
                             <li>用户名：<input type="text" id="userName" name="userName" class="ipt"/></li>
-                            <li>密&nbsp;&nbsp;&nbsp;码：<input type="password" id="userPass" name="userPass" class="ipt"/>
-                            </li>
+                            <li>密&nbsp;&nbsp;&nbsp;码：<input type="password" id="userPass" name="userPass" class="ipt"/></li>
                             <li><input type="submit" value="登录" class="submitBtn"/></li>
                         </ul>
                     </form>

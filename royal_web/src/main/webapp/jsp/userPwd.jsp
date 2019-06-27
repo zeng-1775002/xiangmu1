@@ -99,7 +99,7 @@
                         <li ><a href="${pageContext.request.contextPath}/jsp/userUpdate.jsp">申请高级用户</a></li>
                     </c:if>
                     <c:if test="${user.role==2}">
-                        <li ><a href="${pageContext.request.contextPath}/jsp/userOpen.jsp">开辟新版块</a></li>
+                        <li ><a href="${pageContext.request.contextPath}/jsp/userNewZone.jsp">开辟新版块</a></li>
                     </c:if>
                 </ul>
                 <form id="form" action="${pageContext.request.contextPath}/user/updateUserPass.do" method="post">

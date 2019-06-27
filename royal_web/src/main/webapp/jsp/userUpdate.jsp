@@ -79,12 +79,12 @@
             <div class="user-info-r r">
                 <ul class="clearfix hd">
                     <li><a href="${pageContext.request.contextPath}/jsp/userInfo.jsp">个人信息</a></li>
-                    <li ><a href="${pageContext.request.contextPath}/jsp/userPwd.jsp">修改密码</a></li>
+                    <li class="cur"><a href="${pageContext.request.contextPath}/jsp/userPwd.jsp">修改密码</a></li>
                     <c:if test="${user.role==1}">
-                        <li class="cur"><a href="getUser.do?method=userPwd">申请高级用户</a></li>
+                        <li ><a href="${pageContext.request.contextPath}/jsp/userUpdate.jsp">申请高级用户</a></li>
                     </c:if>
                     <c:if test="${user.role==2}">
-                        <li class="cur"><a href="getUser.do?method=userPwd">开辟新版块</a></li>
+                        <li ><a href="${pageContext.request.contextPath}/jsp/userNewZone.jsp">开辟新版块</a></li>
                     </c:if>
                 </ul>
                 <form action="${pageContext.request.contextPath}/user/updateUserRole.do" method="post">

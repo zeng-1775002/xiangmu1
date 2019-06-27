@@ -31,12 +31,4 @@ public class ZoneController {
     }
 
 
-//    @RequestMapping("/findNewZone.do")
-//    public ModelAndView findNewZone(){
-//        ModelAndView mv = new ModelAndView();
-//        List<ZoneTable> zoneList = zoneService.findNewZone();
-//        mv.addObject("zoneList",zoneList);
-//        mv.setViewName("index");
-//        return mv;
-//    }
 }
