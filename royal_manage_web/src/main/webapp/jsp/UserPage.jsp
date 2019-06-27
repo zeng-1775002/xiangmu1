@@ -19,7 +19,6 @@
     }
 
 
-
 </style>
 
 <script>
@@ -27,7 +26,7 @@
         //获取下拉框的值
         var pageSize = $("#changePageSize").val();
         //向服务器发送请求，改变每页显示条数
-        location.href = "${pageContext.request.contextPath}/user/findAll.do?page=1&size="+pageSize;
+        location.href = "${pageContext.request.contextPath}/user/findAll.do?page=1&size=" + pageSize;
     }
 
 </script>
@@ -56,22 +55,22 @@
                 <!-- Table -->
                 <div>
                     <div style="float: left">
-                            <form action="${pageContext.request.contextPath}/user/findByLike.do">
-                                <div class="dropdown">
-                                    <b>用户名：</b>
-                                    <input type="text" class="dropdown-toggle seek " name="username">
+                        <form action="${pageContext.request.contextPath}/user/findByLike.do">
+                            <div class="dropdown">
+                                <b>用户名：</b>
+                                <input type="text" class="dropdown-toggle seek " name="username">
 
-                                    <span>用户组</span>
-                                    <select name="role">
-                                        <option value="1">普通用户</option>
-                                        <option value="2">高级用户</option>
-                                        <option value="3">超级管理员</option>
-                                    </select>
+                                <b>用户组:</b>
+                                <select name="role">
+                                    <option value="1">普通用户</option>
+                                    <option value="2">高级用户</option>
+                                    <option value="3">超级管理员</option>
+                                </select>
 
-                                    <button type="submit" class="btn btn-primary btn-xs">查询</button>
-                                </div>
+                                <button type="submit" class="btn btn-primary btn-xs">查询</button>
+                            </div>
 
-                            </form>
+                        </form>
                     </div>
                 </div>
                 <div style="clear:both"></div>
@@ -94,14 +93,24 @@
                             <td width="15%" class="line-limit-length">${user.roleStr}</td>
                             <td width="20%" class="line-limit-length">${user.email}</td>
                             <td width="10%" class="line-limit-length">${user.talkStatusStr}</td>
-                            <td width="20%" class="line-limit-length">${user.lastLoginTime}</td>
+                            <td width="20%" class="line-limit-length">${user.lastLoginTimeStr}</td>
                             <td width="5%">
-                                <a href="/User/UpUserRole.do?id=${user.userId}&username=${user.userName}"
+                                <c:if test="${user.role==1}">
+                                <a href="/user/upUserRole.do?id=${user.userId}&username=${user.userName}"
                                    role="button" class="btn btn-primary">升级</a>
+                                </c:if>
                             </td>
                             <td width="5%">
-                                <a href="/User/ForbiddenUser.do?id=${user.userId}&username=${user.userName}"
-                                   role="button" class="btn btn-primary">禁言</a>
+                                <c:if test="${user.talkStatus==0}">
+                                    <c:if test="${user.role!=3}">
+                                        <a href="/user/forbiddenUser1.do?id=${user.userId}&username=${user.userName}"
+                                           role="button" class="btn btn-danger">禁言</a>
+                                    </c:if>
+                                </c:if>
+                                <c:if test="${user.talkStatus==1}">
+                                    <a href="/user/forbiddenUser0.do?id=${user.userId}&username=${user.userName}"
+                                       role="button" class="btn btn-info">恢复</a>
+                                </c:if>
                             </td>
                         </tr>
                     </c:forEach>
@@ -115,7 +124,8 @@
                 <div class="pull-left">
                     <div class="form-group form-inline">
                         总共${pageInfo.pages}页,共${pageInfo.total}条数据。每页
-                        <select class="form-control" style="height: 25px;width: 15px" id="changePageSize" onchange="changePageSize()">
+                        <select class="form-control" style="height: 25px;width: 15px" id="changePageSize"
+                                onchange="changePageSize()">
                             <option>1</option>
                             <option>2</option>
                             <option>3</option>

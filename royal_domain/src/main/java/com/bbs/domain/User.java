@@ -1,5 +1,8 @@
 package com.bbs.domain;
 
+import com.bbs.utils.DateUtils;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 public class User {
@@ -14,6 +17,19 @@ public class User {
     private int role;
     private String roleStr;
     private Date lastLoginTime;
+
+    private String lastLoginTimeStr;
+
+    public String getLastLoginTimeStr() {
+        if (lastLoginTime!=null){
+            lastLoginTimeStr = DateUtils.date2String(lastLoginTime,"yyyy-MM-dd HH:mm:ss");
+        }
+        return lastLoginTimeStr;
+    }
+
+    public void setLastLoginTimeStr(String lastLoginTimeStr) {
+        this.lastLoginTimeStr = lastLoginTimeStr;
+    }
 
     //登录状态，0代表未登录，1代表已登录
     private int loginStatus;

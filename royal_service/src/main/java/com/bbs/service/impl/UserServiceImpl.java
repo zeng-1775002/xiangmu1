@@ -122,7 +122,29 @@ public class UserServiceImpl implements UserService{
         PageHelper.startPage(page,size);
         List<User> userList = userDao.findByLike(page, size, username, role);
         return userList;
+    }
 
+    /**
+     * 禁言
+     * @param userId
+     */
+    @Override
+    public void forbiddenUser1(int userId) {
+        userDao.forbiddenUser1(userId);
+    }
+
+    /**
+     * 恢复禁言
+     * @param userId
+     */
+    @Override
+    public void forbiddenUser0(int userId) {
+        userDao.forbiddenUser0(userId);
+    }
+
+    @Override
+    public void upUserRole(int userId) {
+        userDao.upUserRole(userId);
     }
 }
 

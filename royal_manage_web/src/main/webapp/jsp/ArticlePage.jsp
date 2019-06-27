@@ -18,8 +18,6 @@
         white-space: nowrap;
     }
 
-
-
 </style>
 
 <script>
@@ -31,7 +29,6 @@
             //向服务器发送请求，改变每页显示条数
             location.href = "${pageContext.request.contextPath}/pageManage/findAll.do?page=1&size="+pageSize;
         }
-
     });
 
 

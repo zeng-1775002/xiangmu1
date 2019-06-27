@@ -72,4 +72,25 @@ public interface UserDao {
      */
     @Select("select * from bbs_user_table")
     List<User> findAllUser(@Param("page") int page,@Param("size") int size,@Param("username")String username,@Param("role")String role);
+
+    /**
+     * 根据id对用户进行禁言
+     * @param id
+     */
+    @Update("UPDATE bbs_user_table SET talkStatus = 1 WHERE userId = #{id}")
+    void forbiddenUser1(@Param("id") int id);
+
+    /**
+     * 根据id对用户进行恢复禁言
+     * @param userId
+     */
+    @Update("UPDATE bbs_user_table SET talkStatus = 0 WHERE userId = #{id}")
+    void forbiddenUser0(int userId);
+
+    /**
+     * 升级用户
+     * @param userId
+     */
+    @Update("UPDATE bbs_user_table SET role = 2 WHERE userId = #{id}")
+    void upUserRole(int userId);
 }

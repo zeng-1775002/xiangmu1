@@ -6,18 +6,19 @@ import com.sun.glass.ui.Size;
 
 import java.util.List;
 
-
 public interface UserService {
 
-    User findByNameAndPass(String userName, String userPass);
+    User findByNameAndPass(String userName,String userPass);
 
-    void updateLoginStatus(String userName, int status);
+    void updateLoginStatus (String userName,int status);
 
 
     public User findRole(String userName);
 
 
-    void updateEmail(String email, String userName);
+    void updateEmail(String email,String userName);
+
+
 
 
     void UpdateUserPass(String newPassword, String userName);
@@ -36,5 +37,11 @@ public interface UserService {
     List<User> findAll(int page,int size);
 
     List<User> findByLike(int Page,int Size,String username, String role);
+
+    void forbiddenUser1(int userId);
+
+    void forbiddenUser0(int userId);
+
+    void upUserRole(int userId);
 }
 

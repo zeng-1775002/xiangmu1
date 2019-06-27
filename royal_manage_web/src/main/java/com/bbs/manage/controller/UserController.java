@@ -49,4 +49,38 @@ public class UserController {
         return mv;
     }
 
+    /**
+     * 禁言
+     * @param userId
+     * @return
+     */
+    @RequestMapping("/forbiddenUser1.do")
+    public String forbiddenUser1(@RequestParam(name = "id",required = true)int userId){
+        userService.forbiddenUser1(userId);
+        return "redirect:findAll.do";
+    }
+
+    /**
+     * 恢复禁言
+     * @param userId
+     * @return
+     */
+    @RequestMapping("/forbiddenUser0.do")
+    public String forbiddenUser0(@RequestParam(name = "id",required = true)int userId){
+        userService.forbiddenUser0(userId);
+        return "redirect:findAll.do";
+    }
+
+    /**
+     * 升级用户
+     * @param userId
+     * @return
+     */
+    @RequestMapping("/upUserRole.do")
+    public String upUserRole(@RequestParam(name = "id",required = true)int userId){
+        userService.upUserRole(userId);
+        return "redirect:findAll.do";
+    }
+
+
 }
