@@ -1,7 +1,9 @@
 package com.bbs.controller;
 
 import com.bbs.domain.Article;
+import com.bbs.domain.ZoneTable;
 import com.bbs.service.ArticleService;
+import com.bbs.service.ZoneService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,12 +18,17 @@ import java.util.List;
 public class ArticleController {
     @Autowired
     private ArticleService articleService;
+    @Autowired
+    private ZoneService zoneService;
 
     @RequestMapping("/getArticle.do")
     public ModelAndView findAll(){
         ModelAndView mv = new ModelAndView();
         List<Article> list = articleService.findAll();
+        List<ZoneTable> zoneList = zoneService.findNewZone();
+        mv.addObject("zoneList",zoneList);
         mv.addObject("articleList",list);
+
         mv.setViewName("index");
         return mv;
     }

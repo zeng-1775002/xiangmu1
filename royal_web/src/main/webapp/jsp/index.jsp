@@ -11,8 +11,11 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/index-new.css"/>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.7.2.min.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/hm-bbs.js"></script>
+
+
+
 </head>
-<body>
+<body onload="load()">
 
 <!-- 头部 -->
 <jsp:include page="common/header.jsp"/>
@@ -65,6 +68,12 @@
             <li>
                 <a href="#"><em></em>活动专区</a>
             </li>
+
+            <c:forEach items="${zoneList}" var="list">
+                <li>
+                    <a href="#"><em></em>${list.zoneName}</a>
+                </li>
+            </c:forEach>
         </ul>
 
 
