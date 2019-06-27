@@ -2,6 +2,7 @@ package com.bbs.manage.controller;
 
 import com.bbs.domain.User;
 import com.bbs.service.ManageService;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -33,20 +34,27 @@ public class ManageController {
          *      不是: 向域中存入错误信息
          */
         String s = "请以管理员身份登录!";
-        if (user.getRole()==3){
-            if (userpass.equalsIgnoreCase(user.getUserPass())){
-                //正确,跳转成功页面
-                mv.setViewName("main");
-            }else{
-                //错误,向域中存入错误信息
+        if (user != null) {
+            if (user.getRole() == 3) {
+                if (userpass.equalsIgnoreCase(user.getUserPass())) {
+                    //正确,跳转成功页面
+                    mv.setViewName("main");
+                } else {
+                    //错误,向域中存入错误信息
+                    mv.setViewName("login");
+                    mv.addObject("str", s);
+                }
+            } else {
+                //向域中存入错误信息
+                mv.addObject("str", s);
                 mv.setViewName("login");
-                mv.addObject("str",s);
             }
         }else{
             //向域中存入错误信息
-            mv.addObject("str",s);
+            mv.addObject("str", s);
             mv.setViewName("login");
         }
+
         return mv;
     }
 }

@@ -17,6 +17,7 @@ public class DateUtils {
     public static Date string2Date(String str, String patt) throws ParseException {
         SimpleDateFormat sdf = new SimpleDateFormat(patt);
         Date parse = sdf.parse(str);
+
         return parse;
     }
 }

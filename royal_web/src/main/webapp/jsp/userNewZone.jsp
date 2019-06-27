@@ -28,7 +28,7 @@
     <div class="hm-inner clearfix">
         <div class="hm-header-t clearfix">
             <h1 class="logo l">
-                <a href="javascript:;"><img src="images/logo.png" height="64" width="168" alt=""/></a>
+                <a href="javascript:;"><img src="../images/logo.png" height="64" width="168" alt=""/></a>
             </h1>
             <div class="search-box l">
                 <form action="javascript:;">
@@ -39,7 +39,7 @@
         </div>
         <div class="hm-header-b">
             <i class="hm-ico-home"></i>
-            <a href="/index.jsp">首页</a><span>></span>个人信息
+            <a href="${pageContext.request.contextPath}/index.jsp">首页</a><span>></span>开辟新版块
         </div>
     </div>
 </div>
@@ -54,7 +54,7 @@
             <!--左侧用户名，头像-->
             <div class="user-info-l l">
                 <div class="user-info-l-t">
-                    <img src="${pageContext.request.contextPath}/${user.picUrl}"/>
+                    <img src="../images/default.png"/>
                     <div class="username">${user.userName}</div>
                 </div>
                 <ul class="user-info-l-b">
@@ -67,37 +67,32 @@
             <!--右侧用户信息-->
             <div class="user-info-r r">
                 <ul class="clearfix hd">
-                    <li class="cur"><a href="getUser.do?method=userInfo">个人信息</a></li>
-                    <li><a href="${pageContext.request.contextPath}/jsp/userPwd.jsp">修改密码</a></li>
+                    <li><a href="${pageContext.request.contextPath}/jsp/userInfo.jsp">个人信息</a></li>
+                    <li class="cur"><a href="${pageContext.request.contextPath}/jsp/userPwd.jsp">修改密码</a></li>
                     <c:if test="${user.role==1}">
-                    <li><a href="${pageContext.request.contextPath}/jsp/userUpdate.jsp">申请高级用户</a></li>
-                </c:if>
+                        <li ><a href="${pageContext.request.contextPath}/jsp/userUpdate.jsp">申请高级用户</a></li>
+                    </c:if>
                     <c:if test="${user.role==2}">
-                        <li><a href="getUser.do?method=userPwd">开辟新版块</a></li>
+                        <li ><a href="${pageContext.request.contextPath}/jsp/userOpen.jsp">开辟新版块</a></li>
                     </c:if>
                 </ul>
 
 
-
-                <form action="/user/updateEmailAndPic.do" method="get" enctype="multipart/form-data">
+                <form action="${pageContext.request.contextPath}/zone/insertNewZone.do" method="post">
                     <ul class="bd">
                         <li class="clearfix">
-                            <div class="info-l"><i class="red">*</i>用户名：</div>
-                            <div class="info-r"><input type="text" name="userName" class="txt" value="${user.userName}" readonly="readonly"/></div>
+                            <div class="info-l">版块名称：</div>
+                            <div class="info-r"><input type="text" class="txt" name="zoneName" id="zoneName" value=""/></div>
                         </li>
-                        <li class="clearfix">
-                            <div class="info-l">邮箱地址：</div>
-                            <div class="info-r"><input type="text" name="email" class="txt" value=""/></div>
-                        </li>
-                        <li class="clearfix">
-                            <div class="info-l">上传头像：</div>
-                            <div class="info-r"><input type="file" name="picUrl"  class="file-btn"/></div>
+                        <li class="clearfix" >
+                            <div class="info-l">申请理由：</div>
+                            <div class="info-r" ><textarea  name="reason" id="reason" style="width: 200px;height: 200px;" cols="20" wrap="hard" placeholder="请输入申请理由"></textarea></div>
+
                         </li>
                         <li class="clearfix">
                             <div class="info-l"></div>
                             <div class="info-r">
-                                <input type="submit" class="btn" value="保存"/>
-                                <span style="color:red;">${b}</span>
+                                <input type="submit" class="btn" value="申请"/>
                             </div>
                         </li>
                     </ul>

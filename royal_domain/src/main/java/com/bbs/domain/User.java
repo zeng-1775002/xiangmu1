@@ -19,16 +19,32 @@ public class User {
     private int loginStatus;
     //发言状态，0代表未屏蔽发言（默认），1代表已屏蔽发言
     private int talkStatus;
+
+    private String talkStatusStr;
+
+    public void setTalkStatusStr(String talkStatusStr) {
+        this.talkStatusStr = talkStatusStr;
+    }
+
+    //0代表未屏蔽发言（默认），1代表已屏蔽发言
+    public String getTalkStatusStr() {
+        if (talkStatus==0){
+            talkStatusStr="未禁言";
+        }if (talkStatus==1){
+            talkStatusStr="已禁言";
+        }
+        return talkStatusStr;
+    }
+
     //申请升级(0-未申请,1-已申请)
     private int isupdating;
     //申请升级审核状态(0-未处理,1-已处理)
     private int updateStatus;
 
-    public User() {
-    }
+
 
     public int getUserId() {
-        return this.userId;
+        return userId;
     }
 
     public void setUserId(int userId) {
@@ -36,7 +52,7 @@ public class User {
     }
 
     public String getUserName() {
-        return this.userName;
+        return userName;
     }
 
     public void setUserName(String userName) {
@@ -44,7 +60,7 @@ public class User {
     }
 
     public String getUserPass() {
-        return this.userPass;
+        return userPass;
     }
 
     public void setUserPass(String userPass) {
@@ -52,7 +68,7 @@ public class User {
     }
 
     public String getEmail() {
-        return this.email;
+        return email;
     }
 
     public void setEmail(String email) {
@@ -60,7 +76,7 @@ public class User {
     }
 
     public String getPicUrl() {
-        return this.picUrl;
+        return picUrl;
     }
 
     public void setPicUrl(String picUrl) {
@@ -68,8 +84,7 @@ public class User {
     }
 
     public int getRole() {
-        return this.role;
-
+        return role;
     }
 
     public void setRole(int role) {

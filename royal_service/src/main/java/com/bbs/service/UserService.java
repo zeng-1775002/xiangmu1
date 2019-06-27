@@ -1,6 +1,10 @@
 package com.bbs.service;
 
 import com.bbs.domain.User;
+import com.github.pagehelper.Page;
+import com.sun.glass.ui.Size;
+
+import java.util.List;
 
 
 public interface UserService {
@@ -28,5 +32,9 @@ public interface UserService {
     void register(User user);
 
     Boolean findByName(String userName);
+
+    List<User> findAll(int page,int size);
+
+    List<User> findByLike(int Page,int Size,String username, String role);
 }
 

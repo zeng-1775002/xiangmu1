@@ -13,8 +13,11 @@
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/hm-bbs.js"></script>
 
 
+
+
+
 </head>
-<body>
+<body onload="load()">
 
 <!-- 头部 -->
 <jsp:include page="common/header.jsp"/>
@@ -30,13 +33,13 @@
         <!--头部，帖子统计，搜索-->
         <div class="hm-bbs-info">
             <div class="hm-bbs-icon l" style="width:130px;">
-                <span><img src="../images/bbs-icon.png" height="80"/></span>
+                <span><img src="images/bbs-icon.png" height="80"/></span>
             </div>
             <div class="hm-bbs-info-in l" style="margin-left:30px;">
                 <div class="t clearfix"><h2 class="l">王者荣耀</h2></div>
                 <p>
-                    <span>今日帖子<strong>99</strong></span>
-                    <span>全部帖子<strong>250</strong></span>
+                    <span>今日帖子<strong id="timepost"></strong></span>
+                    <span>/全部帖子<strong id="allpost"></strong></span>
                 </p>
             </div>
             <div class="search-box l">
@@ -46,6 +49,8 @@
                 </form>
             </div>
         </div>
+
+
 
 
         <!-- 导航 -->
@@ -62,7 +67,15 @@
             <li>
                 <a href="#"><em></em>活动专区</a>
             </li>
+
+            <c:forEach items="${zoneList}" var="list">
+                <li>
+                    <a href="#"><em></em>${list.zoneName}</a>
+                </li>
+            </c:forEach>
         </ul>
+
+
 
 
         <!-- 主体部分 -->
@@ -100,7 +113,7 @@
                     </h3>
                     <ul class="b clearfix">
                         <li>
-                            <div><img src="../images/bg.jpg" height="55"/></div>
+                            <div><img src="../images/bg.jpg" height="55"/> </div>
                             <p>Mr.King</p>
                         </li>
                         <li>
@@ -119,6 +132,7 @@
 
 <!-- 底部 -->
 <jsp:include page="common/footer.jsp"/>
+
 
 
 <!-- 右边发帖，回顶部 -->
@@ -151,7 +165,19 @@
         </div>
     </div>
 </form>
-
+<%--定义显示帖子数ajax--%>
+<script>
+    $(function () {
+        $.post("${pageContext.request.contextPath}/article/findByTimePost.do",{},function (data) {
+            $("#timepost").append(data)
+        })
+    });
+    $(function () {
+        $.post("${pageContext.request.contextPath}/article/findAllPost.do",{},function (data) {
+            $("#allpost").append(data)
+        })
+    })
+</script>
 
 </body>
 </html>
