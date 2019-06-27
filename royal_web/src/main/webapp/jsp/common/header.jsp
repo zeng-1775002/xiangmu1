@@ -1,10 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>用户登录</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>用户登录</title>
 
 
 </head>
@@ -14,55 +14,57 @@
         <div class="hm-inner-l l"></div>
         <div class="hm-inner-r r">
             <div class="box">
-
+                <c:if test="${user.userName!=null}">
+                <a href="javascript:;" id="login" class="to-login">欢迎，${user.roleStr}:${user.userName}</a>
+                <a href="${pageContext.request.contextPath}/user/findRole.do?userName=${user.userName}">个人中心</a>
+                </c:if>
+                <c:if test="${user.userName==null}">
                 <a href="javascript:;" id="login" class="to-login">游客登录</a>
-                <a href="register.do" id="register">【新用户注册】</a>
+                <a href="${pageContext.request.contextPath}/jsp/register.jsp">【新用户注册】</a>
                 <div id="dialogBg"></div>
                 <div id="dialog" class="animated">
                     <img class="dialogIco" width="50" height="40" src="images/ico.png"/>
                     <div class="dialogTop" style="height:25px;">
                         <a href="javascript:;" class="closeDialogBtn">关闭</a>
                     </div>
-                    <form action="login/findByNameAndPass.do" method="post">
+
+                    <form action="/login/findByNameAndPass.do" method="post">
                         <ul class="editInfos">
                             <li>用户名：<input type="text" id="userName" name="userName" class="ipt"/></li>
-                            <li>密&nbsp;&nbsp;&nbsp;码：<input type="password" id="userPass" name="userPass" class="ipt"/></li>
+                            <li>密&nbsp;&nbsp;&nbsp;码：<input type="password" id="userPass" name="userPass" class="ipt"/>
+                            </li>
                             <li><input type="submit" value="登录" class="submitBtn"/></li>
                         </ul>
                     </form>
+                    </c:if>
+
                 </div>
             </div>
         </div>
     </div>
 </div>
 </body>
-<script>
-    <%--登录成功显示用户名--%>
-    if (${user.loginStatus == 1}){
-        $('#login ').html('<span>欢迎您，${user.roleStr}:${user.userName}  <a href="${pageContext.request.contextPath}/user/findRole.do?userName=${user.userName}"> &nbsp&nbsp&nbsp个人中心&nbsp&nbsp</a><span>');
-        $('#register').html('<a>注销</a>')
-    }
-</script>
+
 
 <script type="text/javascript">
+    $(function () {
+        //显示弹框
+        $('.box #login').click(function () {
+            var className = $(this).attr('class');
+            $('#dialogBg').fadeIn(300);
+            $('#dialog').removeAttr('class').addClass('animated ' + className + '').fadeIn();
+            $('#userName').focus();
+            $("#j_fixedBar").hide();
+        });
 
-  $(function () {
-      //显示弹框
-      $('.box #login').click(function () {
-          var className = $(this).attr('class');
-          $('#dialogBg').fadeIn(300);
-          $('#dialog').removeAttr('class').addClass('animated ' + className + '').fadeIn();
-          $('#userName').focus();
-          $("#j_fixedBar").hide();
-      });
+        //关闭弹窗
+        $('.closeDialogBtn').click(function () {
+            $('#dialogBg').fadeOut(300, function () {
+                $('#dialog').addClass('bounceOutUp').fadeOut();
+                $("#j_fixedBar").show();
+            });
+        });
+    })
 
-      //关闭弹窗
-      $('.closeDialogBtn').click(function () {
-          $('#dialogBg').fadeOut(300, function () {
-              $('#dialog').addClass('bounceOutUp').fadeOut();
-              $("#j_fixedBar").show();
-          });
-      });
-  });
 </script>
 </html>

@@ -1,11 +1,21 @@
 package com.bbs.dao;
 
+
 import com.bbs.domain.User;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
 public interface UserDao {
+
+    @Select("select count(*) from bbs_user_table where userName=#{userName}")
+    int findByName(String userName);
+
+
+    @Insert("insert into bbs_user_table(userName,userPass,email) values(#{userName},#{userPass},#{email})")
+    void register(User user);
+
     @Select("select * from bbs_user_table where userName=#{userName}")
     public User findRole(String userName);
 

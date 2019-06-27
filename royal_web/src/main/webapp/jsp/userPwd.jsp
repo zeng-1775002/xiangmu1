@@ -30,7 +30,7 @@
 
                 $.post("${pageContext.request.contextPath}/user/findOldUserPass.do",{oldPassword:oldPassword,userName:userName},function (data) {
                       if(data=="true"){
-                          alert(data);
+
                           $("#btn").removeAttr("disabled");
                       }else{
                           alert(data);

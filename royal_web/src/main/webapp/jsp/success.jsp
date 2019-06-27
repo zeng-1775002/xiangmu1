@@ -10,8 +10,20 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/search.css"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/register.css"/>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.7.2.min.js"></script>
+
+
+    <script type="text/javascript">
+
+
+        function jumpurl(){
+            location='../index.jsp';
+        }
+        function url(){
+            setTimeout('jumpurl()',3000);
+        }
+    </script>
 </head>
-<body>
+<body onload="url()">
 
 
 <!-- 头部 -->
@@ -43,7 +55,8 @@
 <div class="hm-body hm-body-bgc">
         <div class="hm-inner"> 
             <div class="reg-box" style="text-align:center;height:200px;padding-top:100px;">
-                <h2>恭喜您，注册成功！</h2>
+                <h2>恭喜您，注册成功</h2>
+                <h1>3秒后跳转至主页面。。。。</h1>
             </div>
         </div>
     </div>

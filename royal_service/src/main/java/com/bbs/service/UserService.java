@@ -2,21 +2,18 @@ package com.bbs.service;
 
 import com.bbs.domain.User;
 
+
 public interface UserService {
 
-    User findByNameAndPass(String userName,String userPass);
+    User findByNameAndPass(String userName, String userPass);
 
-    void updateLoginStatus (String userName,int status);
-
+    void updateLoginStatus(String userName, int status);
 
 
     public User findRole(String userName);
 
 
-
-    void updateEmail(String email,String userName);
-
-
+    void updateEmail(String email, String userName);
 
 
     void UpdateUserPass(String newPassword, String userName);
@@ -26,4 +23,10 @@ public interface UserService {
     Boolean findNewEmail(String email, String userName);
 
     void updateUserRole(String userName);
+
+
+    void register(User user);
+
+    Boolean findByName(String userName);
 }
+

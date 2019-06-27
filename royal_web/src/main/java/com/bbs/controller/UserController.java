@@ -16,12 +16,31 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.util.List;
 
+
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.servlet.ModelAndView;
+
 @Controller
 @RequestMapping("/user")
 @SessionAttributes("user")
 public class UserController {
+
     @Autowired
     private UserService userService;
+
+    /**
+     *
+     * 查找用户级别
+     * @param userName
+     * @param model
+     * @return
+     */
     @RequestMapping("/findRole.do")
     public String findRole(@RequestParam(name = "userName",required = true) String userName,Model model){
         User user = userService.findRole(userName);
@@ -69,6 +88,14 @@ public class UserController {
         userService.updateEmail(user.getUserName(),user.getEmail(),picUrl);
         return mv;
     }*/
+
+    /**
+     * 更新邮箱
+     * @param email
+     * @param userName
+     * @return
+     * @throws Exception
+     */
     @RequestMapping("/updateEmailAndPic.do")
     public ModelAndView updateEmailAndPic(String email,String userName) throws Exception {
         ModelAndView mv = new ModelAndView();
@@ -80,6 +107,14 @@ public class UserController {
         mv.setViewName("userInfo");
         return mv;
     }
+
+    /**
+     * 校验旧密码
+     * @param oldPassword
+     * @param userName
+     * @return
+     * @throws Exception
+     */
     @RequestMapping("/findOldUserPass.do")
     @ResponseBody
     public String findOldUserPass(String oldPassword,String userName) throws Exception {
@@ -91,6 +126,14 @@ public class UserController {
         }
 
     }
+
+    /**
+     * 更改密码
+     * @param newPassword
+     * @param userName
+     * @return
+     * @throws Exception
+     */
     @RequestMapping("/updateUserPass.do")
     public String updateUserPass(String newPassword,String userName) throws Exception {
         userService.UpdateUserPass(newPassword,userName);
@@ -116,4 +159,32 @@ public class UserController {
         return mv;
     }
 
+    /**
+     * 注册
+     * @param user
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping("/register.do")
+    public ModelAndView register(User user) throws Exception {
+        ModelAndView mv = new ModelAndView();
+        this.userService.register(user);
+        mv.addObject("user", user);
+        mv.setViewName("success");
+        return mv;
+    }
+
+    /**
+     * 用户名校对
+     * @param userName
+     * @return
+     */
+    @RequestMapping("/findByName.do")
+    @ResponseBody
+    public String findByName(String userName) {
+        Boolean b = this.userService.findByName(userName);
+        return b ? "true" : "false";
+    }
 }
+
+

@@ -3,37 +3,32 @@ package com.bbs.domain;
 import java.util.Date;
 
 public class User {
+
     private int userId;
     private String userName;
     private String userPass;
     private String email;
-
-
-    //头像
+    //头像路径
     private String picUrl;
-
     //1代表普通用户；2代表高级用户，3代表超级管理员
     private int role;
-
     private String roleStr;
-
     private Date lastLoginTime;
 
     //登录状态，0代表未登录，1代表已登录
     private int loginStatus;
-
     //发言状态，0代表未屏蔽发言（默认），1代表已屏蔽发言
     private int talkStatus;
-
     //申请升级(0-未申请,1-已申请)
     private int isupdating;
-
     //申请升级审核状态(0-未处理,1-已处理)
     private int updateStatus;
 
+    public User() {
+    }
 
     public int getUserId() {
-        return userId;
+        return this.userId;
     }
 
     public void setUserId(int userId) {
@@ -41,7 +36,7 @@ public class User {
     }
 
     public String getUserName() {
-        return userName;
+        return this.userName;
     }
 
     public void setUserName(String userName) {
@@ -49,7 +44,7 @@ public class User {
     }
 
     public String getUserPass() {
-        return userPass;
+        return this.userPass;
     }
 
     public void setUserPass(String userPass) {
@@ -57,7 +52,7 @@ public class User {
     }
 
     public String getEmail() {
-        return email;
+        return this.email;
     }
 
     public void setEmail(String email) {
@@ -65,7 +60,7 @@ public class User {
     }
 
     public String getPicUrl() {
-        return picUrl;
+        return this.picUrl;
     }
 
     public void setPicUrl(String picUrl) {
@@ -73,7 +68,8 @@ public class User {
     }
 
     public int getRole() {
-        return role;
+        return this.role;
+
     }
 
     public void setRole(int role) {

@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
 <head>
     <meta charset="UTF-8"/>
@@ -11,8 +11,6 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/index-new.css"/>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.7.2.min.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/hm-bbs.js"></script>
-
-
 </head>
 <body>
 
@@ -27,10 +25,12 @@
         <div class="hm-banner"></div>
 
 
+
+
         <!--头部，帖子统计，搜索-->
         <div class="hm-bbs-info">
             <div class="hm-bbs-icon l" style="width:130px;">
-                <span><img src="../images/bbs-icon.png" height="80"/></span>
+                <span><img src="/images/bbs-icon.png" height="80"/></span>
             </div>
             <div class="hm-bbs-info-in l" style="margin-left:30px;">
                 <div class="t clearfix"><h2 class="l">王者荣耀</h2></div>
@@ -46,6 +46,8 @@
                 </form>
             </div>
         </div>
+
+
 
 
         <!-- 导航 -->
@@ -65,31 +67,45 @@
         </ul>
 
 
+
+
         <!-- 主体部分 -->
         <div class="hm-bbs-main border-lrb clearfix">
             <!-- 左侧列表 -->
             <div class="list-view l">
-                <ul>
-                    <c:forEach items="${articleList}" var="article" varStatus="vs">
-                        <li class="clearfix ding">
-                            <div class="hm-index-title">
-                                <i class="set-to-top">顶</i> <a
-                                    href="${pageContext.request.contextPath}/article/articleDetail.do?articleId=${article.articleId}">${article.title}</a>
-                            </div>
-                            <div class="hm-index-con">${article.content}</div>
-                            <div class="hm-index-info l">
-                                <span class="article-username">${article.senderName}</span>
-                                <span class="post-time">${article.sendTimeStr}</span>
-                            </div>
 
-                            <div class="hm-index-fun r">
-                                <span class="icon-like"><i></i>1</span>
-                                <span class="icon-talk"><i></i>0</span>
-                            </div>
-                        </li>
+                    <tbody>
+                    <c:forEach var="articleList" items="${articleList}">
+                        <tr>
+                            <td>
+                                <c:if test="${articleList.isTop==1}"><li class="clearfix ding"></c:if>
+                                <c:if test="${articleList.isTop==0}"><li class="clearfix "></c:if>
+
+                                <div class="hm-index-title">
+                                    <i class="set-to-top">顶</i> <a href="${pageContext.request.contextPath}/article/articleDetail.do?articleId=${articleList.articleId}">${articleList.title}</a>
+                                </div>
+                                <div class="hm-index-con">${articleList.content}</div>
+                                <div class="hm-index-info l">
+                                    <span class="article-username">${articleList.senderName}</span>
+                                    <span class="post-time">${articleList.sendTimeStr}</span>
+                                </div>
+                                <div class="hm-index-fun r">
+                                    <span class="icon-like"><i></i>${articleList.upvoteCount}</span>
+                                    <span class="icon-talk"><i></i>${articleList.replyCount}</span>
+                                </div>
+                            </li>
+                            </td>
+                        </tr>
                     </c:forEach>
-                </ul>
+
+
+                    </tbody>
+
+
+
             </div>
+
+
 
 
             <!-- 右侧侧边栏,在线用户 -->
@@ -100,16 +116,17 @@
                     </h3>
                     <ul class="b clearfix">
                         <li>
-                            <div><img src="../images/bg.jpg" height="55"/></div>
+                            <div><img src="${pageContext.request.contextPath}/images/default.png" height="55"/> </div>
                             <p>Mr.King</p>
                         </li>
                         <li>
-                            <div><img src="../images/bg.jpg" height="55"/></div>
+                            <div><img src="${pageContext.request.contextPath}/images/default.png" height="55"/></div>
                             <p>疯子</p>
                         </li>
                     </ul>
                 </div>
             </div>
+
 
 
         </div>
@@ -118,7 +135,8 @@
 
 
 <!-- 底部 -->
-<jsp:include page="common/footer.jsp"/>
+<jsp:include page="/jsp/common/footer.jsp"/>
+
 
 
 <!-- 右边发帖，回顶部 -->
@@ -128,7 +146,7 @@
 </div>
 
 <!-- 发帖弹出框 -->
-<form action="article/save.do" method="post">
+<form action="" method="post">
     <div class="pop-box ft-box">
         <div class="mask"></div>
         <div class="win">
