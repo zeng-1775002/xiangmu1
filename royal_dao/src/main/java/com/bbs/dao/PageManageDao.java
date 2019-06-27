@@ -46,11 +46,11 @@ public interface PageManageDao {
     @Select("select * from bbs_article_table")
     List<Article> findAll(@Param("page") int page,@Param("size") int size);
 
-    //置顶
+    //置顶.
     @Update("update bbs_article_table set isTop = 1 where articleId = #{articleId}")
     void updateIsTop(String articleId);
 
-    //取消
+    //取消.
     @Update("update bbs_article_table set isTop = 0 where articleId = #{articleId}")
     void updateIsTops(String articleId);
 }

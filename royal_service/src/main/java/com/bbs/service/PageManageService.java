@@ -7,9 +7,9 @@ import java.util.List;
 public interface PageManageService {
 
     public List<Article> findAll(int page, int size);
-    //置顶
+    //置顶.
     void updateIsTop(String articleId);
-    //取消
+    //取消.
     void updateIsTops(String articleId);
     public List<Article> findByLike(int page, int size,String title,String sendername);
 

@@ -69,13 +69,13 @@ public class PageManageController {
         return "redirect:findAll.do";
     }
 
-    //置顶
+    //置顶.
     @RequestMapping("changeStatus1.do")
     public String updateIsTop(@RequestParam(name = "id",required = true)String articleId){
         pageManageService.updateIsTop(articleId);
         return "redirect:findAll.do";
     }
-    //取消
+    //取消.
     @RequestMapping("changeStatus2.do")
     public String updateIsTops(@RequestParam(name = "id",required = true)String articleId){
         pageManageService.updateIsTops(articleId);

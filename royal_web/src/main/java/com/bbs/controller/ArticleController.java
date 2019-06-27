@@ -1,7 +1,9 @@
 package com.bbs.controller;
 
 import com.bbs.domain.Article;
+import com.bbs.domain.ZoneTable;
 import com.bbs.service.ArticleService;
+import com.bbs.service.ZoneService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,14 +32,14 @@ public class ArticleController {
         mv.setViewName("index");
         return mv;
     }
-    //首页统计今日贴子数
+    //首页统计今日贴子数.
     @RequestMapping("findByTimePost.do")
     public @ResponseBody Integer findByTimePost() throws Exception {
         Integer byTimePost = articleService.findByTimePost();
         System.out.println(byTimePost);
         return byTimePost;
     }
-    //首页统计全部帖子数
+    //首页统计全部帖子数.
     @RequestMapping("findAllPost.do")
     public @ResponseBody Integer findAllPost() throws Exception {
         Integer serviceAllPost = articleService.findAllPost();
