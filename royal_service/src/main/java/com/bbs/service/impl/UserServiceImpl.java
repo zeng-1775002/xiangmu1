@@ -1,11 +1,16 @@
 package com.bbs.service.impl;
 
 import com.bbs.dao.UserDao;
+import com.bbs.domain.Article;
 import com.bbs.domain.User;
 import com.bbs.service.UserService;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
 @Transactional
@@ -67,5 +72,35 @@ public class UserServiceImpl implements UserService{
     @Override
     public void updateLoginStatus(String userName, int status) {
         userDao.updateLoginStatus(userName,status);
-    }}
+    }
+
+    /**
+     * 后台查询所有用户和用户组信息
+     * @return
+     */
+    @Override
+    public List<User> findAll(int page,int size) {
+
+        PageHelper.startPage(page,size);
+        return userDao.findAll(page,size);
+    }
+
+    @Override
+    public List<User> findByLike(int page,int size,String username, String role) {
+        /**
+         * 如果用户名为空,就执行查询全部
+         * 如果不为空,就执行模糊查询
+         */
+        if (username=="" && role ==""){
+            //利用pageHelper进行分页查询
+            PageHelper.startPage(page,size);
+            return userDao.findAllUser(page,size,username,role);
+        }
+        //利用pageHelper进行分页查询
+        PageHelper.startPage(page,size);
+        List<User> userList = userDao.findByLike(page, size, username, role);
+        return userList;
+
+    }
+}
 

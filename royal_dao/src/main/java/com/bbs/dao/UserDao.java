@@ -5,6 +5,8 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
+import java.util.List;
+
 public interface UserDao {
     @Select("select * from bbs_user_table where userName=#{userName}")
     public User findRole(String userName);
@@ -33,4 +35,31 @@ public interface UserDao {
     //更新用户登录状态
     @Update("update bbs_user_table set loginStatus = #{status} where userName =#{userName}")
     void updateLoginStatus (@Param("userName")String userName,@Param("status") int status);
+
+    /**
+     * 查询后台所有用户和用户组信息进行分页查询
+     * @return
+     */
+    @Select("select * from bbs_user_table")
+    List<User> findAll(@Param("page") int page,@Param("size")int size);
+
+    /**
+     * 根据用户名和用户组模糊分页查询
+     * @param username
+     * @param role
+     * @return
+     */
+    @Select("SELECT * FROM bbs_user_table WHERE userName LIKE #{username} and role LIKE #{role}")
+    List<User> findByLike(@Param("page") int page,@Param("size") int size,@Param("username") String username,@Param("role") String role);
+
+    /**
+     * 分页查询所有用户信息
+     * @param page
+     * @param size
+     * @param username
+     * @param role
+     * @return
+     */
+    @Select("select * from bbs_user_table")
+    List<User> findAllUser(@Param("page") int page,@Param("size") int size,@Param("username")String username,@Param("role")String role);
 }

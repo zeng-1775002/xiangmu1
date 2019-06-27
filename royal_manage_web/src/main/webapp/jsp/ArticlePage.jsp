@@ -23,12 +23,19 @@
 </style>
 
 <script>
-    function changePageSize() {
-        //获取下拉框的值
-        var pageSize = $("#changePageSize").val();
-        //向服务器发送请求，改变每页显示条数
-        location.href = "${pageContext.request.contextPath}/pageManage/findAll.do?page=1&size="+pageSize;
-    }
+    $(function () {
+
+        function changePageSize() {
+            //获取下拉框的值
+            var pageSize = $("#changePageSize").val();
+            //向服务器发送请求，改变每页显示条数
+            location.href = "${pageContext.request.contextPath}/pageManage/findAll.do?page=1&size="+pageSize;
+        }
+
+    });
+
+
+
 
 </script>
 <body>
@@ -56,7 +63,7 @@
                 <!-- Table -->
                 <div>
                     <div style="float: left">
-                        <form action="/postManage/findByLike.do" method="post" id="articleSearchForm">
+                        <form action="${pageContext.request.contextPath}/pageManage/findByLike.do" method="post" id="articleSearchForm">
                             <table>
                                 <tr>
                                     <th>
@@ -75,11 +82,10 @@
                                                name="sendername" value="">
                                     </th>
                                     <th colspan="2">
-                                        <input type="submit" value="查询" class="form-control btn-primary">
+                                        <input type="submit" value="查询" class="form-control btn-primary" id="articleSearchForm1" >
                                     </th>
                                 </tr>
                             </table>
-
                         </form>
                     </div>
                 </div>
@@ -111,7 +117,7 @@
                             <td width="5%">${article.browseCount}</td>
                             <td width="15%">${article.zoneId}</td>
                             <td width="15%">
-                                <a href="/article/deleteArticle.do?id=${article.articleId}&pn=${articleMsgs.pageNum}&title=${articleSearch.title}&sendername=${articleSearch.sendername}"
+                                <a href="/pageManage/deleteArticle.do?id=${article.articleId}&pn=${articleMsgs.pageNum}&title=${articleSearch.title}&sendername=${articleSearch.sendername}"
                                    role="button" class="btn btn-primary">屏蔽</a>
                                 <c:if test="${article.isTop==0}">
                                     <a href="/article/changeStatus.do?id=${article.articleId}&pn=${articleMsgs.pageNum}&title=${articleSearch.title}&sendername=${articleSearch.sendername}"
@@ -174,7 +180,6 @@
 
             <!-- 尾部信息-->
             <%@ include file="commom/foot.jsp" %>
-
 
         </div><!-- /.hrms_dept_container -->
         <!-- .box-footer-->

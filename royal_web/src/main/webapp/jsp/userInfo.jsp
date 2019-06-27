@@ -39,7 +39,7 @@
         </div>
         <div class="hm-header-b">
             <i class="hm-ico-home"></i>
-            <a href="index.do">首页</a><span>></span>个人信息
+            <a href="/index.jsp">首页</a><span>></span>个人信息
         </div>
     </div>
 </div>
