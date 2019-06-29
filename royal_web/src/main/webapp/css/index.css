@@ -230,7 +230,7 @@ a.hm-bbs-sel:hover em {
   margin-right: 20px;
   margin-left: 5px;
 }
-
+.hm-index-fun .icon-like i,
 .hm-index-fun .icon-talk i {
   display: inline-block;
   width: 16px;
@@ -247,10 +247,6 @@ a.hm-bbs-sel:hover em {
 .hm-index-fun .icon-talk i {
   background-position: -16px 0;
 }
-
-.hm-index-fun .icon-like i,*
-
-
 .ding .set-to-top {
   display: inline-block;
 }

@@ -14,7 +14,7 @@ public interface CommentDao {
             @Result(property = "commentUserName",column = "commentUserName"),
             @Result(property = "commentStatus",column = "commentStatus"),
             @Result(property = "articleId",column = "articleId"),
-            @Result(property = "replys",column = "commentId",javaType = List.class,
+            @Result(property = "replys",column = "commentId",javaType = java.util.List.class,
             many = @Many(select = "com.bbs.dao.ReplyDao.findBycommentId")),
             @Result(property = "user",column = "commentUserName",javaType = com.bbs.domain.User.class,
                     one=@One(select = "com.bbs.dao.UserDao.findRole"))

@@ -54,7 +54,7 @@
             <!--左侧用户名，头像-->
             <div class="user-info-l l">
                 <div class="user-info-l-t">
-                    <img src="../images/default.png"/>
+                    <img src="../${user.picUrl}"/>
                     <div class="username">${user.userName}</div>
                 </div>
                 <ul class="user-info-l-b">
@@ -68,17 +68,17 @@
             <div class="user-info-r r">
                 <ul class="clearfix hd">
                     <li><a href="${pageContext.request.contextPath}/jsp/userInfo.jsp">个人信息</a></li>
-                    <li class="cur"><a href="${pageContext.request.contextPath}/jsp/userPwd.jsp">修改密码</a></li>
+                    <li ><a href="${pageContext.request.contextPath}/jsp/userPwd.jsp">修改密码</a></li>
                     <c:if test="${user.role==1}">
                         <li ><a href="${pageContext.request.contextPath}/jsp/userUpdate.jsp">申请高级用户</a></li>
                     </c:if>
                     <c:if test="${user.role==2}">
-                        <li ><a href="${pageContext.request.contextPath}/jsp/userNewZone.jsp">开辟新版块</a></li>
+                        <li class="cur"><a href="${pageContext.request.contextPath}/jsp/userNewZone.jsp">开辟新版块</a></li>
                     </c:if>
                 </ul>
 
 
-                <form action="${pageContext.request.contextPath}/zone/insertNewZone.do" method="post">
+                <form action="${pageContext.request.contextPath}/user/insertNewZone.do" method="post">
                     <ul class="bd">
                         <li class="clearfix">
                             <div class="info-l">版块名称：</div>

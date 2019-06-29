@@ -29,7 +29,7 @@
         </li>
 
         <ul class="nav nav-pills nav-stacked">
-            <li role="presentation"><a href="/report/findByPage.do">审批举报</a></li>
+            <li role="presentation"><a href="${pageContext.request.contextPath}/manageReport/findAll.do">审批举报</a></li>
         </ul>
         </li>
     </ul>

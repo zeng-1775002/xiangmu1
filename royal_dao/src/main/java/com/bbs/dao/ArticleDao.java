@@ -3,6 +3,7 @@ package com.bbs.dao;
 import com.bbs.domain.Article;
 import org.apache.ibatis.annotations.*;
 
+import java.util.Date;
 import java.util.List;
 
 public interface ArticleDao {
@@ -16,10 +17,10 @@ public interface ArticleDao {
     Integer findByTimePost()throws Exception;
 
     //查询全部帖子的状态
-    @Select("select * from bbs_article_table")
-    public List<Article> findAll();
+    @Select("select * from bbs_article_table where zoneId = #{zoneId}")
+    public List<Article> findAll(Integer zoneId) throws Exception;
 
-    //    发帖功能
+//    发帖功能
 //    `title`,`content`,`sendTime`,`senderName`,`isTop`,`replyCount`,`upvoteCount`,`browseCount`,`zoneId`,`isReport`
     @Insert("insert into bbs_article_table(title,content,sendTime,senderName,isTop,replyCount,upvoteCount,browseCount,zoneId,isReport)" +
             "values(#{title},#{content},#{sendTime},#{senderName},#{isTop},#{replyCount},#{upvoteCount},#{browseCount},#{zoneId},#{isReport})")
@@ -33,6 +34,15 @@ public interface ArticleDao {
      */
     @Select("select count(*) from bbs_article_table where senderName=#{userName}")
     int findArticleByName(String userName);
+
+
+
+    @Insert("insert into bbs_comment_table (commentUserName,articleId,commentContent,commentStatus,commentTime) values(#{userName},#{articleId},#{commentContent},#{i},#{date})")
+    void comment(@Param("userName") String userName, @Param("articleId") Integer articleId, @Param("commentContent") String commentContent,@Param("i") int i, @Param("date") Date date);
+
+    @Insert("insert into bbs_reply_table (replyContent,replyTime,replyUserName,commentId) values(#{replyContent},#{date},#{userName},#{commentId})")
+    void reply(@Param("replyContent") String replyContent,@Param("date") Date date,@Param("userName") String userName,@Param("commentId") Integer commentId);
+
 
 
 

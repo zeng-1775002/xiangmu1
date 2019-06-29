@@ -60,4 +60,9 @@ public class PageManageServiceImpl implements PageManageService{
     public void updateIsTops(String articleId) {
         pageManageDao.updateIsTops(articleId);
     }
+    @Override
+    public List<Article> findById(String articleId) {
+
+        return pageManageDao.findById(articleId);
+    }
 }

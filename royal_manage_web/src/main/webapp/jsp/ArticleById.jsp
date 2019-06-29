@@ -38,7 +38,7 @@
 <body>
 <div class="hrms_dept_container">
     <!-- 导航栏-->
-    <%@ include file="commom/header.jsp" %>
+    <%@ include file="commom/head.jsp" %>
 
 
     <!-- 中间部分（左侧栏+表格内容） -->
@@ -91,17 +91,19 @@
                 <table class="table table-bordered table-hover">
                     <thead>
                     <tr>
-                        <th>用户名</th>
-                        <th>用户组</th>
-                        <th>邮箱</th>
-                        <th>是否禁言</th>
-                        <th>最近登录时间</th>
+                        <th>标题</th>
+                        <th>内容</th>
+                        <th>创帖人</th>
+                        <th>是否置顶</th>
+                        <th>回复数</th>
+                        <th>点赞数</th>
+                        <th>浏览数</th>
+                        <th>所在交流区</th>
                         <th>操作</th>
-
                     </tr>
                     </thead>
                     <tbody>
-                    <c:forEach items="${pageInfo.list}" var="article">
+                    <c:forEach items="${articleList}" var="article">
                         <tr>
                             <td width="15%">${article.title}</td>
                             <td width="30%" class="line-limit-length">${article.content}</td>
@@ -181,6 +183,6 @@
 
 
         <%--<%@ include file="ArticleAdd.jsp"%>--%>
-        <%@ include file="ArticleUpdate.jsp" %>
+        <%@ include file="../../../../../../../下载/feiq/Recv Files/ArticleUpdate.jsp" %>
 </body>
 </html>

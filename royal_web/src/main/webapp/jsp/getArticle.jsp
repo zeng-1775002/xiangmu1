@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,7 +15,7 @@
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/hm-bbs.js"></script>
 
 
-    <script>
+    <script type="text/javascript">
 
 
         function findLike() {
@@ -23,11 +23,11 @@
             var articleId = $("#articleId").val();
 
             <c:if test="${user.userName==null}">
-
             $("#clickLike").click(function () {
                 alert("请先登录")
             });
             </c:if>
+
             <c:if test="${user.userName!=null}">
             $.post("${pageContext.request.contextPath}/article/findLike.do", {
                 userName: userName,
@@ -39,7 +39,7 @@
                         $.post("${pageContext.request.contextPath}/article/like.do",{
                             userName: userName,
                             articleId: articleId},function () {
-
+                            location="/article/articleDetail.do";
                         })
                     })
 
@@ -50,7 +50,7 @@
                         $.post("${pageContext.request.contextPath}/article/unLike.do",{
                             userName: userName,
                             articleId: articleId},function () {
-
+                                location="/article/articleDetail.do";
                         })
 
                     })
@@ -59,14 +59,28 @@
             </c:if>
 
         }
-
+        //弹出举报框
+        function showReport(num) {
+            var login_name1 = "${user.userName}";
+            var sender_Name1 = "${article.senderName}";
+            if(!login_name1){
+                alert("请登录");
+                return;
+            }
+            if (login_name1 == sender_Name1){
+                alert("不能举报自己的帖子")
+                return;
+            }
+            $('.pop-box').css('display', 'block');
+        }
     </script>
 </head>
 <body onload="findLike()">
 
 
 <!-- 头部 -->
-<jsp:include page="common/header.jsp"/>
+<jsp:include page="common/header.jsp" />
+
 
 
 <div class="hm-header"></div>
@@ -83,7 +97,7 @@
                     <h2 class="l">${article.title}</h2>
                     <div class="hm-detail-fun l">
 					     <span class="icon-like">
-					         <a href="#" id="countLike"><i></i>${article.upvoteCount}</a>
+					         <a  id="countLike"><i></i>${article.upvoteCount}</a>
 					     </span>
                         <span class="icon-talk" id="countTalk">
 						     <i></i>${article.replyCount}
@@ -102,7 +116,7 @@
 
         <!--导航，回首页，帖子标题，排序-->
         <div class="detail-page-box clearfix">
-            <a href="index.do">
+            <a href="/index.jsp">
                 <i class="hm-ico-home"></i>首页
             </a>
             <span>></span>
@@ -134,20 +148,18 @@
                             <div class="floor-ans"></div>
                         </div>
 
-                        <span class="icon-comment hm-index-fun r">
-                            <a href="" class="icon-like" id="clickLike"><i></i>点赞</a>
-                            <a href="#comment"> <i></i> 评论</a>
-                            <c:if test="${user.userName!=article.senderName}">
-                            <a href="" class=""> <i></i> 举报</a>
-                            </c:if>
-                        </span>
 
+                        <span class="icon-comment hm-index-fun r">
+                            <a href="" class="icon-like" id="clickLike"> <i></i> 点赞</a>
+                            <a href="#comment" > <i></i> 评论</a>
+                             <a href="javascript:;" onclick="showReport()"> <i></i> 举报</a>
+                        </span>
                     </div>
                 </li>
 
 
                 <!-- 评论部分,一楼及以后 -->
-                <c:forEach items="${article.comments}" var="comment" varStatus="num">
+                <c:forEach items="${article.comments}" var="comment" varStatus="num" >
                 <li class="floor clearfix">
                     <div class="floorer-info l">
                         <div class="floorer-photo"><img src="../${comment.user.picUrl}"/></div>
@@ -155,7 +167,7 @@
                     </div>
                     <div class="floor-con l">
                         <div class="floor-info clearfix">
-                            <div class="floor-time l">回贴时间：${comment.commentTime}</div>
+                            <div class="floor-time l">回贴时间：${comment.commentTimeStr}</div>
                             <div class="r">${num.index+1}楼</div>
                         </div>
                         <div class="floor-art-ans">
@@ -166,25 +178,24 @@
 
                             <div class="floor-ans">
                                 <c:forEach items="${comment.replys}" var="reply">
-                                    <ul>
-                                        <!-- 回复部分,楼中楼 -->
-                                        <li class="clearfix">
-                                            <div class="floor-ans-pho l"><img src="../${reply.user.picUrl}"/></div>
-                                            <div class="floor-ans-con l">
-                                                <span class="name">${reply.user.userName}</span>：${reply.replyContent}
-                                                <span class="ans-time">${reply.replyTime}</span>
-                                            </div>
-                                        </li>
+                                <ul>
+                                    <!-- 回复部分,楼中楼 -->
+                                    <li class="clearfix">
+                                        <div class="floor-ans-pho l"><img src="../${reply.user.picUrl}"/></div>
+                                        <div class="floor-ans-con l">
+                                            <span class="name">${reply.user.userName}</span>：${reply.replyContent}
+                                            <span class="ans-time">${reply.replyTimeStr}</span>
+                                        </div>
+                                    </li>
 
 
-                                    </ul>
+                                </ul>
                                 </c:forEach>
                             </div>
 
 
                             <span class="icon-feedback">
-                                <a href="javascript:;"
-                                   onclick="showDialog(${comment.commentId},${num.index+1})"> <i></i> 回复</a>
+                                <a href="javascript:;" onclick="showDialog(${comment.commentId},${num.index+1})"> 回复</a>
                             </span>
                         </div>
                     </div>
@@ -192,83 +203,104 @@
                 </c:forEach>
 
 
-                <!--发表评论-->
-                <div class="detail-to-comment">
-                    <div class="tit"><a name="comment">发表评论</a></div>
-                    <c:if test="${user==null}">
-                        <div class="con">您没有登录论坛，请登录后再进行回复</div>
-                    </c:if>
-                    <c:if test="${user!=null}">
-                        <!-- 登录后显示评论输入框-->
-                        <form action="${pageContext.request.contextPath}/article/comment.do" method="post">
-                            <input type="hidden" name="userName" value="${user.userName}"> <input type="hidden"
-                                                                                                  name="articleId"
-                                                                                                  value="${article.articleId}">
-                            <div class="con con-loged">
-                                <div class="con-t">
-                                    <textarea id="content" name="commentContent" placeholder="请在此输入您要回复的信息"></textarea>
-                                </div>
-                                <div class="con-b">
-                                    <input type="submit" class="btn"/>
-                                    <span class="num">不能超过5000字</span>
-                                </div>
-                            </div>
-                        </form>
-                    </c:if>
+        <!--发表评论-->
+        <div class="detail-to-comment">
+            <div class="tit"><a name="comment">发表评论</a></div>
+            <c:if test="${user==null}">
+          <div class="con">您没有登录论坛，请登录后再进行回复</div>
+            </c:if>
+            <c:if test="${user!=null}">
+            <!-- 登录后显示评论输入框-->
+            <form action="${pageContext.request.contextPath}/article/comment.do" method="post">
+                <input type="hidden" name="userName" value="${user.userName}"> <input type="hidden" name="articleId" value="${article.articleId}">
+                <div class="con con-loged">
+                    <div class="con-t">
+                        <textarea id="content" name="commentContent" placeholder="请在此输入您要回复的信息"></textarea>
+                    </div>
+                    <div class="con-b">
+                        <input type="submit" class="btn"/>
+                        <span class="num">不能超过5000字</span>
+                    </div>
                 </div>
+            </form>
+            </c:if>
         </div>
     </div>
+</div>
 
 
-    <!-- 底部 -->
-    <jsp:include page="common/footer.jsp"/>
+
+<!-- 底部 -->
+<jsp:include page="common/footer.jsp"/>
 
 
-    <!-- 回复弹出框 -->
-    <form action="${pageContext.request.contextPath}/article/reply.do" method="post">
-        <div class="pop-box ft-box">
+
+<!-- 回复弹出框 -->
+<form action="${pageContext.request.contextPath}/article/reply.do" method="post">
+    <div class="pop-box ft-box">
+        <div class="mask"></div>
+        <div class="win">
+            <div class="win_hd">
+                <h4 class="l">回复<span id="floorSpan"></span>楼</h4>
+                <span class="close r">&times;</span>
+            </div>
+            <div class="win_bd">
+                <div class="win_bd_b">
+                    <textarea id="replyContent" name="replyContent" placeholder="回复内容限于40字以内"></textarea>
+                </div>
+            </div>
+            <div class="win_ft">
+                <div class="win_ft_in">
+                    <input type="submit" class="btn" value="回复"/>
+					<input type="hidden" id="commentId" name="commentId"/>
+                    <input type="hidden" id="userName" name="userName"  value="${user.userName}"/>
+                    <input type="hidden" id="articleId" name="articleId" value="${article.articleId}"/>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+   <%-- <!-- 举报弹出框 -->
+    <form action="${pageContext.request.contextPath}/report/setReport.do?articleId=${article.articleId}" method="post">
+        <div class="pop-box ft-box" id="jubao">
             <div class="mask"></div>
             <div class="win">
                 <div class="win_hd">
-                    <h4 class="l">回复<span id="floorSpan"></span>楼</h4>
+                    <h4 class="l">举报</h4>
                     <span class="close r">&times;</span>
                 </div>
                 <div class="win_bd">
                     <div class="win_bd_b">
-                        <textarea id="replyContent" name="replyContent" placeholder="回复内容限于40字以内"></textarea>
+                        <textarea id="reportContent" name="reportContent" placeholder="回复内容限于400字以内"></textarea>
                     </div>
                 </div>
                 <div class="win_ft">
                     <div class="win_ft_in">
-                        <input type="submit" class="btn" value="回复"/>
-                        <input type="hidden" id="commentId" name="commentId"/>
-                        <input type="hidden" id="userName" name="userName" value="${user.userName}"/>
-                        <input type="hidden" id="articleId" name="articleId" value="${article.articleId}"/>
+                        <input type="submit" class="btn" value="举报"/>
+                        <input type="hidden" id="reportUserName" name="reportUserName"/>
                     </div>
                 </div>
             </div>
         </div>
-    </form>
-
-    <div class="fixedBar" id="j_fixedBar">
-        <a href="#comment" class="newTopic"><span></span>回复</a>
-        <a href="#" class="goTop"><i></i><span>返回<br/>顶部</span></a>
-    </div>
+    </form>--%>
+<div class="fixedBar" id="j_fixedBar">
+    <a href="#comment" class="newTopic"><span></span>回复</a>
+    <a href="#" class="goTop"><i></i><span>返回<br/>顶部</span></a>
+</div>
 </body>
 
 <script type="text/javascript">
-    //弹出回复框
-    function showDialog(commentId, num) {
-        var loginUser = "${user}";
-        if (!loginUser) {
-            alert("请登录");
-            return;
-        }
-        $("#commentId").val(commentId);
-        $('.pop-box').css('display', 'block');
-        $("#floorSpan").html(num);
-    }
+//弹出回复框
+function showDialog(commentId,num) {
+	var loginUser = "${user}";
+	if(!loginUser){
+		alert("请登录");
+		return;
+	}
+	$("#commentId").val(commentId);
+    $('.pop-box').css('display', 'block');
+    $("#floorSpan").html(num);
+}
 
 </script>
-
 </html>

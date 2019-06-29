@@ -1,6 +1,5 @@
 package com.bbs.dao;
 
-
 import com.bbs.domain.User;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
@@ -34,8 +33,9 @@ public interface UserDao {
     @Select("select * from bbs_user_table where email=#{email} and userName=#{userName}")
     User findNewEmail(@Param("email") String email, @Param("userName") String userName);
 
-    @Update("update bbs_user_table set role=2 where userName=#{userName}")
+    @Update("update bbs_user_table set isupdating=1,updateStatus=0 where userName=#{userName}")
     void updateUserRole(String userName);
+
 
     //查询用户名与密码，获取用户
     @Select("select * from bbs_user_table where userName = #{userName} and userPass = #{userPass}")
@@ -44,7 +44,13 @@ public interface UserDao {
 
     //更新用户登录状态
     @Update("update bbs_user_table set loginStatus = #{status} where userName =#{userName}")
-    void updateLoginStatus (@Param("userName")String userName,@Param("status") int status);
+    void updateLoginStatus (@Param("status") int status,@Param("userName")String userName);
+    /**
+     * 查找所有在线用户
+     * @return
+     */
+    @Select("select * from bbs_user_table where loginStatus=1")
+    List<User> findLoadUser();
 
     /**
      * 查询后台所有用户和用户组信息进行分页查询

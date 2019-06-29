@@ -2,6 +2,7 @@ package com.bbs.controller;
 
 import com.bbs.domain.User;
 import com.bbs.service.UserService;
+import com.bbs.service.ZoneService;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
@@ -18,6 +19,7 @@ import java.util.List;
 
 
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -33,20 +35,32 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private ZoneService zoneService;
+
+
+    @RequestMapping("/insertNewZone.do")
+    public String insertNewZone(@RequestParam(name = "zoneName", required = true)String zoneName,
+                                @RequestParam(name = "reason", required = true)String reason,
+                                HttpSession session){
+
+        String userName = (String) session.getAttribute("username");
+        zoneService.insertNewZone(zoneName,reason,userName);
+
+        return "userInfo";
+    }
 
     /**
      *
      * 查找用户级别
      * @param userName
-     * @param model
+     * @param
      * @return
      */
     @RequestMapping("/findRole.do")
-    public String findRole(@RequestParam(name = "userName",required = true) String userName,Model model){
+    public String findRole(@RequestParam(name = "userName",required = true) String userName){
         User user = userService.findRole(userName);
-        System.out.println(user);
-        ModelAndView mv = new ModelAndView();
-        model.addAttribute("user",user);
+
         return "userInfo";
     }
    /* @RequestMapping("/updateEmailAndPic.do")

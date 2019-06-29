@@ -6,6 +6,8 @@ import com.sun.glass.ui.Size;
 
 import java.util.List;
 
+import java.util.List;
+
 public interface UserService {
 
     User findByNameAndPass(String userName,String userPass);
@@ -13,7 +15,9 @@ public interface UserService {
     void updateLoginStatus (String userName,int status);
 
 
+
     public User findRole(String userName);
+
 
 
     void updateEmail(String email,String userName);
@@ -28,6 +32,8 @@ public interface UserService {
     Boolean findNewEmail(String email, String userName);
 
     void updateUserRole(String userName);
+
+    List<User> findLoadUser();
 
 
     void register(User user);

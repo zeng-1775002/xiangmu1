@@ -81,4 +81,14 @@ public class PageManageController {
         pageManageService.updateIsTops(articleId);
         return "redirect:findAll.do";
     }
+    //根据帖子id查询
+    @RequestMapping("findById.do")
+    public ModelAndView findById(@RequestParam(name = "id",required = true) String articleId){
+        ModelAndView mv = new ModelAndView();
+        List<Article> articleList = pageManageService.findById(articleId);
+        mv.addObject("articleList",articleList);
+        mv.setViewName("ArticleById");
+        return mv;
+
+    }
 }

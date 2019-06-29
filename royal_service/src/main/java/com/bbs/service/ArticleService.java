@@ -15,9 +15,15 @@ public interface ArticleService {
     void save(Article article);
 
     //查询全部帖子的状态
-    public List<Article> findAll();
+    public List<Article> findAll(Integer zoneId,int page,int size) throws Exception;
 
     int findArticleByName(String userName);
+
+
+
+    void comment(String userName, Integer articleId, String commentContent);
+
+    void reply(String replyContent, Integer commentId, String userName);
 
 
     List<Article> search(String msg);
@@ -30,7 +36,7 @@ public interface ArticleService {
 
     void like(String userName, Integer articleId);
 
-}
+
 
     void unLike(String userName, Integer articleId);
 }

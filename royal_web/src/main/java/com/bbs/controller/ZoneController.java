@@ -27,7 +27,7 @@ public class ZoneController {
         String userName = (String) session.getAttribute("username");
         zoneService.insertNewZone(zoneName,reason,userName);
 
-        return "index";
+        return "forward:index.jsp";
     }
 
 

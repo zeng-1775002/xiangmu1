@@ -53,4 +53,7 @@ public interface PageManageDao {
     //取消.
     @Update("update bbs_article_table set isTop = 0 where articleId = #{articleId}")
     void updateIsTops(String articleId);
+    //根据id查询
+    @Select("select * from bbs_article_table where articleId = #{articleId}")
+    List<Article> findById(String articleId);
 }

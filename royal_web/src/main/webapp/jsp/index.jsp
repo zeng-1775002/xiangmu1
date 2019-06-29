@@ -11,13 +11,8 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/index-new.css"/>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.7.2.min.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/hm-bbs.js"></script>
-
-
-
-
-
 </head>
-<body onload="load()">
+<body >
 
 <!-- 头部 -->
 <jsp:include page="common/header.jsp"/>
@@ -30,10 +25,13 @@
         <div class="hm-banner"></div>
 
 
+
+
+
         <!--头部，帖子统计，搜索-->
         <div class="hm-bbs-info">
             <div class="hm-bbs-icon l" style="width:130px;">
-                <span><img src="images/bbs-icon.png" height="80"/></span>
+                <span><img src="${pageContext.request.contextPath}/images/bbs-icon.png" height="80"/></span>
             </div>
             <div class="hm-bbs-info-in l" style="margin-left:30px;">
                 <div class="t clearfix"><h2 class="l">王者荣耀</h2></div>
@@ -54,23 +52,23 @@
 
 
         <!-- 导航 -->
-        <ul class="hm-bbs-nav border-lrb clearfix">
+        <ul id="ul" class="hm-bbs-nav border-lrb clearfix">
             <li class="current">
-                <a href="#"><em></em>综合交流区</a>
+                <a href="${pageContext.request.contextPath}/article/getArticle.do?zoneId=1"><em></em>综合交流区</a>
             </li>
             <li>
-                <a href="#"><em></em>BUG反馈区</a>
+                <a href="${pageContext.request.contextPath}/article/getArticle.do?zoneId=2"><em></em>BUG反馈区</a>
             </li>
             <li>
-                <a href="#"><em></em>新闻公告区</a>
+                <a href="${pageContext.request.contextPath}/article/getArticle.do?zoneId=3"><em></em>新闻公告区</a>
             </li>
             <li>
-                <a href="#"><em></em>活动专区</a>
+                <a href="${pageContext.request.contextPath}/article/getArticle.do?zoneId=4"><em></em>活动专区</a>
             </li>
 
-            <c:forEach items="${zoneList}" var="list">
+            <c:forEach items="${zoneList}" var="list" varStatus="i">
                 <li>
-                    <a href="#"><em></em>${list.zoneName}</a>
+                    <a href="${pageContext.request.contextPath}/article/getArticle.do?zoneId=${i.count+4}"><em></em>${list.zoneName}</a>
                 </li>
             </c:forEach>
         </ul>
@@ -83,49 +81,111 @@
             <!-- 左侧列表 -->
             <div class="list-view l">
                 <ul>
-                    <c:forEach items="${articleList}" var="article" varStatus="vs">
-                        <li class="clearfix ding">
-                            <div class="hm-index-title">
-                                <i class="set-to-top">顶</i> <a
-                                    href="${pageContext.request.contextPath}/article/articleDetail.do?articleId=${article.articleId}">${article.title}</a>
-                            </div>
-                            <div class="hm-index-con">${article.content}</div>
-                            <div class="hm-index-info l">
-                                <span class="article-username">${article.senderName}</span>
-                                <span class="post-time">${article.sendTimeStr}</span>
-                            </div>
+                    <c:forEach items="${pageInfo.list}" var="article">
 
-                            <div class="hm-index-fun r">
-                                <span class="icon-like"><i></i>1</span>
-                                <span class="icon-talk"><i></i>0</span>
-                            </div>
-                        </li>
+                        <c:if test="${article.isTop==1}">
+                            <li class="clearfix ding">
+                                <div class="hm-index-title">
+
+                                    <i class="set-to-top">顶</i>
+                                    <a href="${pageContext.request.contextPath}/article/articleDetail.do?articleId=${article.articleId}">${article.title}</a>
+                                </div>
+                                <div class="hm-index-con">${article.content}</div>
+                                <div class="hm-index-info l">
+                                    <span class="article-username">${article.senderName}</span>
+                                    <span class="post-time">${article.sendTime}</span>
+                                </div>
+                                <div class="hm-index-fun r">
+                                    <span class="icon-like"><i></i>${article.upvoteCount}</span>
+                                    <span class="icon-talk"><i></i>${article.replyCount}</span>
+                                </div>
+                            </li>
+                        </c:if>
+                    </c:forEach>
+                    <c:forEach items="${pageInfo.list}" var="article">
+                        <c:if test="${article.isTop==0}">
+                            <li class="clearfix">
+                                <div class="hm-index-title">
+                                    <i class="set-to-top">顶</i>
+                                    <a href="${pageContext.request.contextPath}/article/articleDetail.do?articleId=${article.articleId}">${article.title}</a>
+                                </div>
+                                <div class="hm-index-con">${article.content}</div>
+                                <div class="hm-index-info l">
+                                    <span class="article-username">${article.senderName}</span>
+                                    <span class="post-time">${article.sendTime}</span>
+                                </div>
+                                <div class="hm-index-fun r">
+                                    <span class="icon-like"><i></i>${article.upvoteCount}</span>
+                                    <span class="icon-talk"><i></i>${article.replyCount}</span>
+                                </div>
+                            </li>
+                        </c:if>
                     </c:forEach>
                 </ul>
             </div>
+
+
 
 
             <!-- 右侧侧边栏,在线用户 -->
             <div class="aside l">
                 <div class="aside-box">
                     <h3 class="t">
-                        <a href="javascript:;">在线用户(2)</a>
+                        <a href="javascript:;">在线用户(${users.size()})</a>
                     </h3>
                     <ul class="b clearfix">
+                        <c:forEach items="${users}" var="user1" varStatus="vs">
                         <li>
-                            <div><img src="../images/bg.jpg" height="55"/> </div>
-                            <p>Mr.King</p>
+                            <div><img src="../${user1.picUrl}" height="55"/> </div>
+                            <p>${user1.userName}</p>
                         </li>
-                        <li>
-                            <div><img src="../images/bg.jpg" height="55"/></div>
-                            <p>疯子</p>
-                        </li>
+                        </c:forEach>
+
                     </ul>
                 </div>
             </div>
 
 
+
         </div>
+        <%--分页导航栏--%>
+        <div class="box-footer">
+            <div class="pull-left">
+                <div class="form-group form-inline">
+                    总共${pageInfo.pages}页,共${pageInfo.total}条数据。<%--每页--%>
+                  <%--  <select class="form-control" style="height: 25px;width: 15px" id="changePageSize" onchange="changePageSize()">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                    </select>条--%>
+                </div>
+            </div>
+          <%--  <div class="box-tools pull-right">
+                <ul class="pagination">
+                    <li>
+                        <a href="${pageContext.request.contextPath}/article/getArticle.do?page=1&size=${pageInfo.pageSize}"
+                           aria-label="Previous">首页</a>
+                    </li>
+                    <li>
+                        <a href="${pageContext.request.contextPath}/article/getArticle.do?page=${pageInfo.pageNum-1}&size=${pageInfo.pageSize}">上一页</a>
+                    </li>
+                    <c:forEach begin="1" end="${pageInfo.pages}" var="pageNum">
+                        <li>
+                            <a href="${pageContext.request.contextPath}/article/getArticle.do?page=${pageNum}&size=${pageInfo.pageSize}">${pageNum}</a>
+                        </li>
+                    </c:forEach>
+                    <li>
+                        <a href="${pageContext.request.contextPath}/article/getArticle.do?page=${pageInfo.pageNum+1}&size=${pageInfo.pageSize}">下一页</a>
+                    </li>
+                    <li>
+                        <a href="${pageContext.request.contextPath}/article/getArticle.do?page=${pageInfo.pages}&size=${pageInfo.pageSize}"
+                           aria-label="Next">尾页</a>
+                    </li>
+                </ul>
+            </div>
+        </div>--%>
     </div>
 </div>
 
@@ -137,12 +197,17 @@
 
 <!-- 右边发帖，回顶部 -->
 <div class="fixedBar" id="j_fixedBar">
-    <a id="newTopicBtn" href="javascript:;" class="newTopic"><span></span>发帖</a>
+    <c:if test="${user!=null}">
+        <a id="newTopicBtn" href="javascript:;" class="newTopic"><span></span>发帖</a>
+    </c:if>
+    <c:if test="${user==null}">
+        <a  onclick="alert('请登录')" class="newTopic"><span></span>发帖</a>
+    </c:if>
     <a href="#" class="goTop"><i></i><span>返回<br/>顶部</span></a>
 </div>
 
 <!-- 发帖弹出框 -->
-<form action="article/save.do" method="post">
+<form action="${pageContext.request.contextPath}/article/save.do" method="post">
     <div class="pop-box ft-box">
         <div class="mask"></div>
         <div class="win">

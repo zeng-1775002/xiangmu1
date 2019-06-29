@@ -95,7 +95,7 @@
                             <td width="10%" class="line-limit-length">${user.talkStatusStr}</td>
                             <td width="20%" class="line-limit-length">${user.lastLoginTimeStr}</td>
                             <td width="5%">
-                                <c:if test="${user.role==1}">
+                                <c:if test="${user.role==1 && user.role==2}">
                                 <a href="/user/upUserRole.do?id=${user.userId}&username=${user.userName}"
                                    role="button" class="btn btn-primary">升级</a>
                                 </c:if>

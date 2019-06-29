@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+
 @Service
 @Transactional
 public class UserServiceImpl implements UserService{
@@ -43,20 +44,20 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public void updateEmail(String email, String userName) {
-        userDao.updateEmail(email, userName);
+    public void updateEmail(String email,String userName) {
+        userDao.updateEmail(email,userName);
     }
 
     @Override
     public void UpdateUserPass(String newPassword, String userName) {
-        userDao.UpdateUserPass(newPassword, userName);
+        userDao.UpdateUserPass(newPassword,userName);
 
     }
 
     @Override
     public Boolean findOldUserPass(String oldPassword, String userName) {
-        User user = userDao.findOldUserPass(oldPassword, userName);
-        if (user != null) {
+        User user=userDao.findOldUserPass(oldPassword,userName);
+        if(user!=null){
             return true;
         }
         return false;
@@ -64,12 +65,12 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public Boolean findNewEmail(String email, String userName) {
-        User user = userDao.findNewEmail(email, userName);
-        if (user != null) {
-            return true;
-        } else {
-            return false;
-        }
+       User user= userDao.findNewEmail(email,userName);
+       if(user!=null){
+           return true;
+       }else{
+           return false;
+       }
     }
 
     /**
@@ -82,17 +83,29 @@ public class UserServiceImpl implements UserService{
         userDao.updateUserRole(userName);
     }
 
-
-
-
+    /**
+     * 查找所有在线用户
+     * @return
+     */
     @Override
-    public User findByNameAndPass(String userName, String userPass) {
-        return userDao.findByNameAndPass(userName, userPass);
+    public List<User> findLoadUser() {
+        return userDao.findLoadUser();
     }
 
+
+    @Override
+    public User findByNameAndPass(String userName,String userPass) {
+        return userDao.findByNameAndPass(userName,userPass);
+    }
+
+    /**
+     * 修改用户登录状态
+     * @param userName
+     * @param status
+     */
     @Override
     public void updateLoginStatus(String userName, int status) {
-        userDao.updateLoginStatus(userName, status);
+        userDao.updateLoginStatus(status,userName);
     }
 
 

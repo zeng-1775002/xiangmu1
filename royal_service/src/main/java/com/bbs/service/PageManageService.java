@@ -14,6 +14,7 @@ public interface PageManageService {
     public List<Article> findByLike(int page, int size,String title,String sendername);
 
     void deleteById(Integer articleId);
-
+    //根据id查询
+    List<Article> findById(String articleId);
 
 }

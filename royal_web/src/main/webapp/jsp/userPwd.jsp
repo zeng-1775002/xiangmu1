@@ -30,7 +30,7 @@
 
                 $.post("${pageContext.request.contextPath}/user/findOldUserPass.do",{oldPassword:oldPassword,userName:userName},function (data) {
                       if(data=="true"){
-
+                          alert("密码正确");
                           $("#btn").removeAttr("disabled");
                       }else{
                           alert(data);
@@ -68,7 +68,7 @@
         </div>
         <div class="hm-header-b">
             <i class="hm-ico-home"></i>
-            <a href="index.do">首页</a><span>></span>修改密码
+            <a href="${pageContext.request.contextPath}/index.jsp">首页</a><span>></span>修改密码
         </div>
     </div>
 </div>
