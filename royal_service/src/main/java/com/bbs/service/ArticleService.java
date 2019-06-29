@@ -36,7 +36,5 @@ public interface ArticleService {
 
     void like(String userName, Integer articleId);
 
-
-
     void unLike(String userName, Integer articleId);
 }
